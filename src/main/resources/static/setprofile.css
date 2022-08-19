@@ -1,0 +1,30 @@
+/* 상단 네비바 프로필 크기관련 */
+.topbar-profile-photo{
+    width: 1.5em;
+    height: 1.5em;
+    position: relative;
+}
+
+/* 수정할 프로필 사진 크기 관련 */
+.profile-profile-photo {
+    width: 56px;
+    height: 56px;
+    position: relative;
+}
+.line_set{
+    margin-right: 115px;
+    display: flex;
+    justify-content: end;
+}
+
+.txtbox{
+    margin-left: 25px;
+    width:400px;
+}
+
+.txtsize{
+    font-size: 13px;
+    font-weight: bold;
+    color: #808080;
+    width: 400px;
+}

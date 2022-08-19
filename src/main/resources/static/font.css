@@ -1,0 +1,109 @@
+.ModifyButton{
+ font-weight: bold;
+}
+
+.ModifyButton:hover{
+ color: #7401DF;
+}
+
+/*아이템들 수직 중앙 정렬화 */
+#data {
+    padding: 10px;
+    text-align: center;
+}
+
+#box {
+    border: 1.5px solid rgb(192, 192, 192);
+}
+/* 버튼 넓이*/
+#data button{
+    width: 100%;
+    color: white;
+    font-weight: bold;
+}
+
+/* 또는 폰트 만들어주기기 */
+#data h6{
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(64, 64, 64, 0.5);
+    border-bottom: 1.5px solid rgb(192, 192, 192);
+    line-height: 0.1px;
+}
+
+#data h6 span{
+    margin-top: 10px;
+    background-color: white;
+    padding: 20px;
+}
+
+/* 비밀번호를 잊으셨나요?*/
+#data p{
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* 비밀번호를 잊으셨나요? 폰트관련 */
+#data a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/*페이스북 버튼 위치 */
+#facebook{
+    margin-top: 30px;
+}
+
+/*페이스북 폰트 관련*/
+#facebook a{
+   background-color: #fff;
+    width: 100%;
+    height: 30px;
+    border: 0;
+    font-weight: 600;
+    font-size: 15px;
+    color : #00366B;
+    text-decoration:none;
+}
+
+/* 계정이 없으신가요 관련*/
+#join{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    background-color: white;
+    width: 400px;
+    height: 70px;
+    border: 1.5px solid rgb(192, 192, 192);
+    margin-top: 15px;
+}
+
+/*  회원가입창 font css*/
+#title {
+    font-size: 22px;
+    font-weight: bold;
+    color: rgba(96, 96, 96, 0.7);
+}
+
+#tail {
+    font-size: 15px;
+    font-weight: bold;
+    color: rgba(96, 96, 96, 0.7);
+}
+
+#with button{
+    margin-top: 20px;
+    margin-bottom: 45px;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+}
+
+#warning {
+    margin-bottom: 15px;
+}
+
+

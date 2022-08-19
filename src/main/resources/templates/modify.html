@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns="http://www.w3.org/1999/html">
+<div class="main_container" layout:fragment="content">
+
+    <section class="main">
+        <!-- 상단 친구목록? 내용물 관련 -->
+        <div class="mt-4"> <!-- 네비바와 거리띄우기 -->
+            <div class="main_container d-flex justify-content-center">
+                <div class="col-9">
+                    <div class="row">
+                        <div class="col-8">
+
+                            <!-- 게시물 관련 시작-->
+                            <div class="d-flex flex-column mb-4" th:each="question : ${question}">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="d-flex flex-row align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center ms-2">
+                                                <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo me-3">
+                                                    <!-- 게시물 프로필사진 -->
+                                                    <img th:src="@{/img/basic-profile-image.png}"
+                                                         style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
+                                                </div>
+                                                <div class="d-flex justify-content-start">
+                                                    <span class="fw-bold">꼬솜우비</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ps-3 pe-3 pt-3 pb-1">
+                                    </div>
+
+                                    <!-- 게시물 이미지 시작-->
+                                    <div class="card-body p-0">
+                                        <div class="swiper mySwiper">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide" th:each="image : ${question.fileList}">
+                                                    <img th:if="${image.filename.contains('jpg')}"
+                                                         class="ratio ratio-1x1"
+                                                         th:src="'/uploadFiles/'+${image.filename}" alt="img">
+                                                    <video th:unless="${image.filename.contains('jpg')}"
+                                                           class="ratio ratio-1x1" controls
+                                                           th:src="'/uploadFiles/'+${image.filename}"></video>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-button-next"></div>
+                                            <div class="swiper-button-prev"></div>
+                                            <div class="swiper-pagination"></div>
+                                        </div>
+                                        <!-- 게시물 이미지 시작 끝-->
+                                        <!-- 게시물 이미지 밑 아이콘 시작-->
+                                        <div class="ps-3 pe-3 pt-3 pb-1">
+
+                                        </div>
+                                        <!-- 게시물 이미지 밑 아이콘 끝-->
+
+                                        <div class="d-flex ps-3 pe-3 pb-1">
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 게시물 관련 끝-->
+
+                        <!-- 오른쪽 -->
+                        <!-- 오른쪽 내용 변경 시작-->
+                        <div class="col-4">
+                            <form th:action="@{|/setting/modify/${question.id}|}" method="post">
+                                <p class="description card-header">
+                                    <strong for="content" class="form-label ps-2">내용</strong>
+                                    <textarea name="content" class="form-control" rows="12"
+                                              th:text="${question.content}"></textarea>
+                                </p>
+
+                                <!-- 오른쪽 내용 변경 끝-->
+
+                                <!-- 댓글막기, 저장, 취소 시작 -->
+                                <div class="comment-wrapper ms-5 ps-2 pr-0 mt-4">
+                                    <div class="form-check form-switch">
+                                        <span th:if="!${question.onOff}">
+                                            <input class="form-check-input mt-2" type="checkbox" name="onOff"
+                                                   id="flexSwitchCheckDefault">
+                                            <label class="form-check-label text-info"
+                                                   for="flexSwitchCheckDefault">댓글막기</label>
+                                        </span>
+                                        <span th:if="${question.onOff}">
+                                            <input class="form-check-input" type="checkbox" name="onOff"
+                                                   id="flexSwitchCheckChecked" checked>
+                                            <label class="form-check-label text-info"
+                                                   for="flexSwitchCheckChecked">댓글막기</label>
+                                        </span>
+                                        <input type="submit" value="저장하기" class="btn text-info">
+                                        <a th:href="@{|/question/list|}" class="btn text-info">취소</a>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- 댓글막기, 저장, 취소 끝 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script layout:fragment="script" type='text/javascript'>
+    var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+
+
+
+
+
+
+
+</script>
+</html>

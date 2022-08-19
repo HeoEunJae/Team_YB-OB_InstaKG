@@ -1,0 +1,105 @@
+/*
+.link-icon { position: relative; display: inline-block; width: auto;    font-size: 14px; font-weight: 500; color: #333; margin-right: 10px; padding-top: 50px; }
+.link-icon.twitter { background-image: url(./images/icon-twitter.png); background-repeat: no-repeat; border:none;}
+.link-icon.kakao { background-image: url(./images/icon-kakao.png); background-repeat: no-repeat;  border:none;}
+.border{
+width:42.5px;
+}
+@font-face {
+    font-family: 'Happiness-Sans-Title';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html > body,
+html > body input,
+html > body select,
+html > body textarea,
+html > body pre,
+html > body button {
+  font-family:"Happiness-Sans-Title";
+  line-height:1.3;
+  text-underline-position:under;
+}
+
+body{
+background-color :#000;
+}
+
+.WidthCenter{
+width : 320px;
+}
+
+.tableC{
+width : 320px;
+background-color :#000;
+}
+
+.nomal_s{
+ color:inherit;
+  text-decoration:inherit;
+  color:rgba(192,192,192, 0.5);
+  font-size:11px;
+}
+
+.nomal_m{
+ color:inherit;
+  text-decoration:inherit;
+  color:rgba(192,192,192, 1);
+  margin : 10px;
+}
+.nomal:hover{
+  color:rgba(255,255,255, 1);
+ font-weight : bold;
+}
+
+.imgSize{
+width:300px;
+}
+.likeSize{
+width:20px;
+height : 20px;
+}
+
+.anwerSize{
+width:20px;
+height : 20px;
+margin-bottom:5px;
+}
+.kglistPadding{
+padding : 10px 10px;
+}
+
+.like{
+background :url("./icon/like.png") no-repeat;
+border : none;
+cursor : pointer;
+}
+
+.unlike{
+background :url("./icon/unlike.png") no-repeat;
+border : none;
+cursor : pointer;
+
+}
+
+.answerIcon{
+background :url("./icon/answer.png") no-repeat;
+border : none;
+cursor : pointer;
+
+}
+
+.InstarDisplayInline{
+display : inline;
+}
+
+.detailBorder{
+border:1px solid rgba(192,192,192, 0.5);
+}
+
+.User{
+text-align:left;
+}
+*/

@@ -1,0 +1,112 @@
+html > body {
+    background-color: white;
+}
+/* 상단 네비바 프로필 크기관련 */
+.topbar-profile-photo{
+    width: 1.5em;
+    height: 1.5em;
+    position: relative;
+}
+
+/* 수정할 프로필 사진 크기 관련 */
+.profile-profile-photo {
+    width: 140px;
+    height: 140px;
+    position: relative;
+}
+
+/* 게시글 / 저장됨 / 태그됨 */
+.tablist{
+    list-style: none;
+    border-top: 1px solid #dbdbdb;
+}
+
+.tablistitem {
+    margin-right: 60px;
+    padding: 18px 0;
+    position: relative;
+}
+
+.tablistitem_text{
+    font-weight: bold;
+    font-size: 14px;
+    color: #dbdbdb;
+    letter-spacing: 0.7px;
+}
+
+/* 아이콘들 */
+.tablistitem_icon{
+    color: rgba(38, 38, 38, 0.5);
+    margin-right: 6px;
+    width: 16px;
+    height: 16px;
+}
+
+/* 버튼 투명하게 만들어줌 */
+.tablistitem_btn{
+    border: none;
+    background: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+/* 아이콘 및 텍스트 활성화 */
+.tablistitem.activate .tablistitem_text{
+    color: #000;
+}
+
+.tablistitem.activate .tablistitem_icon path{
+    fill: #000;
+}
+/* 버튼 누르면 활성화 되는 윗줄 */
+.tablistitem.activate::before {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 70px;
+    background-color: #000;
+    top: -1px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+/* 게시물 목록 관련 */
+.boards {
+    display: flex;
+    justify-content: center;
+}
+.board_list{
+    width:100%;
+}
+
+.boards .board_list{
+    list-style: none;
+    display: grid;
+    gird-template-column: repeat(3, 1fr);
+    padding: 0;
+}
+
+.boards .board_list li {
+    width: auto;
+    height: auto;
+    margin: 0 26px 20px;
+}
+
+.boards .board_list li a{
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.boards .board_list li a .board_img{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.boards .board_list li a .board_img img{
+    height: 100%;
+    width: 100%;
+}

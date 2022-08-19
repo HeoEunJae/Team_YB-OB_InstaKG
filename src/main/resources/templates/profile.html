@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns="http://www.w3.org/1999/html">
+<div class="main_container" layout:fragment="content">
+    <!-- 프로필 화면 시작 -->
+    <div class="mt-5"> <!-- 네비바와 거리띄우기 -->
+        <div class="main_container d-flex justify-content-center">
+            <div class="col-7">
+                <div class="row">
+                    <div class="col-4">
+                        <div>
+                            <a href="#">
+                                <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center profile-profile-photo">
+                                    <!-- 프로필 사진 -->
+                                    <img th:src="@{/img/basic-profile-image.png}"
+                                         style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 오른쪽 프로필 관련 시작-->
+                    <div class="col-6">
+                        <!-- 사용자 아이디 / 프로필 편집 버튼 / 설정버튼 시작 -->
+                        <div class="d-flex">
+                            <span>사용자1</span>
+                            <div class="d-flex">
+                                <div class="ms-2 border border-dark bg-white">
+                                    <a th:href="@{/setprofile}" class="Modal-Nomal">프로필 편집</a>
+                                </div>
+                                <div class="ms-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                                         fill="currentColor"
+                                         class="bi bi-gear" viewBox="0 0 16 16">
+                                        <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                                        <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 사용자 아이디 / 프로필 편집 버튼 / 설정버튼 끝 -->
+                        <!-- 게시물 / 팔로워 / 팔로우 시작 -->
+                        <div class="d-flex justify-content-between mt-3">
+                            <div>
+                                <span>게시물</span>
+                                <span>0</span>
+                            </div>
+                            <div>
+                                <span>팔로워</span>
+                                <span>0</span>
+                            </div>
+                            <div>
+                                <span>팔로우</span>
+                                <span>0</span>
+                            </div>
+                        </div>
+                        <!-- 사용자 이름 변경 -->
+                        <div class="d-flex justify-content-between mt-3">
+                            <div>
+                                <strong>내계정아닌거같은데?</strong>
+                            </div>
+                        </div>
+                        <!-- 사용자 소개 내용 시작 -->
+                        <div class="d-flex justify-content-between mt-1">
+                            <div>
+                                <span>소개페이지입니다</span>
+
+                            </div>
+                        </div>
+                        <!-- 사용자 소개 내용 끝 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 프로필 화면 끝 -->
+    <br>
+    <!-- 게시물 / 저장됨 / 태그됨 시작 -->
+    <div>
+        <ul class="tablist d-flex justify-content-center">
+            <li class="tablistitem d-flex align-items-center activate">
+                <button class="tablistitem_btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="tablistitem_icon"
+                         viewBox="0 0 16 16">
+                        <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13zM1.5 1a.5.5 0 0 0-.5.5V5h4V1H1.5zM5 6H1v4h4V6zm1 4h4V6H6v4zm-1 1H1v3.5a.5.5 0 0 0 .5.5H5v-4zm1 0v4h4v-4H6zm5 0v4h3.5a.5.5 0 0 0 .5-.5V11h-4zm0-1h4V6h-4v4zm0-5h4V1.5a.5.5 0 0 0-.5-.5H11v4zm-1 0V1H6v4h4z"/>
+                    </svg>
+                    <span class="tablistitem_text">게시물</span>
+                </button>
+            </li>
+            <li class="tablistitem d-flex align-items-center">
+                <button class="tablistitem_btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="tablistitem_icon"
+                         viewBox="0 0 16 16">
+                        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                        <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
+                    </svg>
+                    <span class="tablistitem_text">저장됨</span>
+                </button>
+            </li>
+            <li class="tablistitem d-flex align-items-center">
+                <button class="tablistitem_btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="tablistitem_icon"
+                         viewBox="0 0 16 16">
+                        <path d="M8 9.05a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                        <path d="M1 1a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h.5a.5.5 0 0 0 .5-.5.5.5 0 0 1 1 0 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5.5.5 0 0 1 1 0 .5.5 0 0 0 .5.5h.5a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H6.707L6 1.293A1 1 0 0 0 5.293 1H1Zm0 1h4.293L6 2.707A1 1 0 0 0 6.707 3H15v10h-.085a1.5 1.5 0 0 0-2.4-.63C11.885 11.223 10.554 10 8 10c-2.555 0-3.886 1.224-4.514 2.37a1.5 1.5 0 0 0-2.4.63H1V2Z"/>
+                    </svg>
+                    <span class="tablistitem_text">태그됨</span>
+                </button>
+            </li>
+        </ul>
+        <!-- 게시물 / 저장됨 / 태그됨 끝-->
+        <!-- 사진 정렬 시작 -->
+        <div class="boards mt-3">
+            <ul class="board_list">
+                <li th:each="question: ${question}">
+                    <a th:href="@{|/question/list/detail/${question.id}|}">
+                        <div th:each="image,index: ${question.fileList}">
+                                 <span th:if="${index.index} == 0">
+                                     <img th:if="${image.filename.contains('jpg')||image.filename.contains('png')}"
+                                          height="300" width="300"
+                                          th:src="'/uploadFiles/'+${image.filename}" alt="img">
+                                     <video th:unless="${image.filename.contains('jpg')||image.filename.contains('png')}"
+                                            height="300" width="300" class="bg-white"
+                                            controls
+                                            th:src="'/uploadFiles/'+${image.filename}"></video>
+                              </span>
+                        </div>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- 사진 정렬 끝 -->
+    </div>
+</div>
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</html>
