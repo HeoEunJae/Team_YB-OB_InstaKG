@@ -99,10 +99,11 @@
                                             <ul class="list-inline">
                                                 <li class="list-inline-item">
                                                     <!-- 좋아요 싫어요 -->
-                                                    <form th:action="@{|/question/like/${question.id}|}"
+                                                    <form th:action="@{|/question/like|}"
                                                           method="post">
                                                         <div th:if="${question.replyLike}">
-                                                            <button class="btn p-0">
+                                                            <a idx="${question.id}" href="javascript:"
+                                                               class="btn p-0 heart-click">
                                                                 <svg type="submit" xmlns="http://www.w3.org/2000/svg"
                                                                      width="1.5em"
                                                                      height="1.5em" fill="currentColor"
@@ -110,10 +111,10 @@
                                                                      viewBox="0 0 16 16">
                                                                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                                                                 </svg>
-                                                            </button>
+                                                            </a>
                                                         </div>
                                                         <div th:if="!${question.replyLike}">
-                                                            <button class="btn p-0">
+                                                            <a idx="${question.id}" href="javascript:" class="btn p-0">
                                                                 <svg type="submit" xmlns="http://www.w3.org/2000/svg"
                                                                      width="1.5em"
                                                                      height="1.5em"
@@ -121,7 +122,7 @@
                                                                      viewBox="0 0 16 16">
                                                                     <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
                                                                 </svg>
-                                                            </button>
+                                                            </a>
                                                         </div>
                                                     </form>
                                                 </li>
@@ -565,19 +566,49 @@ function move(url){
     location.href = url+sessionStorage.getItem("question_id");
     sessionStorage.removeItem("question_id");
 }
-//파일이름 쪼개기
 
 
+//ajax 좋아요 싫어요
+$(".heart-click").click(function(){
+    let no = $(this).attr('idx');
+    console.log("heart-click");
 
+    if($(this).children('svg').attr('class') == "bi bi-star"){
+        console.log("빈하트 클릭" + no);
 
+        $.ajax({
+            url : '/question/like',
+            type : 'get',
+            data : {
+                no : no,
+            },
+            success : function(){
+                console.log("성공");
+            },
+            error : function(){
+                console.log("서버에러");
+            }
+        });
+        $(this).html('<svg type="submit" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/> </svg>');
+    }else if($(this).children('svg').attr('class') == "bi bi-star-fill"){
+        console.log("꽉찬하트 클릭" + no);
 
-
-
-
-
-
-
-
+        $.ajax({
+            url : '/question/like',
+            type : 'get',
+            data : {
+                no : no,
+            },
+            success : function(){
+                console.log("성공");
+            },
+            error : function(){
+                console.log("서버에러");
+            }
+        });
+        $(this).html('<svg type="submit" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16"> <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/> </svg>');
+    }
+});
 
 
 

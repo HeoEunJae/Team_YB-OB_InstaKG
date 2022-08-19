@@ -44,7 +44,7 @@ public class QuestionService {
         question.setContent(content);
         question.setCreateDate(LocalDateTime.now());
         question.setModifyDate(LocalDateTime.now());
-        question.setReplyLike(false);
+        question.setReplyLike(0);
         this.questionRepository.save(question);
         return question;
     }
@@ -109,13 +109,14 @@ public class QuestionService {
     public void setLike(Integer questionId) {
         Question question = questionRepository.findById(questionId).get();
 
-        if(question.getReplyLike() == true){
-            question.setReplyLike(false);
+        if(question.getReplyLike() == 1){
+            question.setReplyLike(0);
         }else {
-            question.setReplyLike(true);
+            question.setReplyLike(1);
         }
         this.questionRepository.save(question);
     }
+
 
     public void delete(Question question){
         String root = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\uploadFiles";
@@ -125,7 +126,7 @@ public class QuestionService {
         this.questionRepository.delete(question);
     }
 
-    public void modify(Question question, String content, Boolean onOff){
+    public void modify(Question question, String content, Integer onOff){
         question.setContent(content);
         question.setModifyDate(LocalDateTime.now());
         question.setOnOff(onOff);
