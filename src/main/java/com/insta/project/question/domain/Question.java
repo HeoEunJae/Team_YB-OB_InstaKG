@@ -25,7 +25,7 @@ public class Question {
 
     @Column(columnDefinition = "integer default 0", nullable = false)
 
-    private Boolean replyLike;
+    private Integer replyLike;
 
     @Column(columnDefinition = "TEXT")
     private String content;
@@ -34,7 +34,7 @@ public class Question {
 
     private LocalDateTime modifyDate;
 
-    private Boolean onOff;
+    private Integer onOff;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
@@ -46,16 +46,16 @@ public class Question {
     private List<AnswerComment> answerCommentsList;
 
 
-    @Converter
-    class BooleanToYNConverter implements AttributeConverter<Boolean, String> {
-        @Override
-        public String convertToDatabaseColumn(Boolean attribute) {
-            return (attribute != null && attribute) ? "Y" : "N";
-        }
-
-        @Override
-        public Boolean convertToEntityAttribute(String dbData) {
-            return "Y".equals(dbData);
-        }
-    }
+//    @Converter
+//    class BooleanToYNConverter implements AttributeConverter<Boolean, String> {
+//        @Override
+//        public String convertToDatabaseColumn(Boolean attribute) {
+//            return (attribute != null && attribute) ? "Y" : "N";
+//        }
+//
+//        @Override
+//        public Boolean convertToEntityAttribute(String dbData) {
+//            return "Y".equals(dbData);
+//        }
+//    }
 }

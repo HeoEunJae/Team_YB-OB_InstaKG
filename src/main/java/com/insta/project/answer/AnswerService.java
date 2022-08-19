@@ -27,16 +27,16 @@ public class AnswerService {
         answer.setContent(content);
         answer.setCreateDate(LocalDateTime.now());
         answer.setQuestion(question);
-        answer.setReplyLike(false);
+        answer.setReplyLike(0);
         this.answerRepository.save(answer);
     }
 
     public void setLike(Integer answerId) {
         Answer answer = answerRepository.findById(answerId).get();
-        if(answer.getReplyLike() == true) {
-            answer.setReplyLike(false);
+        if(answer.getReplyLike() == 1) {
+            answer.setReplyLike(0);
         } else {
-            answer.setReplyLike(true);
+            answer.setReplyLike(1);
         }
         this.answerRepository.save(answer);
     }

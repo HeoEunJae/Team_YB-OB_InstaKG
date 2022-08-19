@@ -34,7 +34,7 @@ public class SettingController {
     }
 
     @PostMapping("/modify/{id}")
-    public String modify(Model model, @PathVariable("id") Integer id, @RequestParam(value = "onOff", required = false) Boolean onOff, @Valid QuestionForm questionForm, BindingResult bindingResult) {
+    public String modify(Model model, @PathVariable("id") Integer id, @RequestParam("onOff") Integer onOff, @Valid QuestionForm questionForm, BindingResult bindingResult) {
         Question question = this.questionService.getQuestion(id);
         if (bindingResult.hasErrors()) {
             model.addAttribute("question", question);
