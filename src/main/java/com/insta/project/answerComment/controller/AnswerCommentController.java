@@ -1,8 +1,9 @@
-/*
 package com.insta.project.answerComment.controller;
 
-import com.insta.project.answer.AnswerForm;
 import com.insta.project.answer.AnswerService;
+import com.insta.project.answer.domain.Answer;
+import com.insta.project.answerComment.AnswerCommentForm;
+import com.insta.project.answerComment.AnswerCommentService;
 import com.insta.project.question.domain.Question;
 import com.insta.project.question.service.QuestionService;
 import lombok.RequiredArgsConstructor;
@@ -23,18 +24,21 @@ public class AnswerCommentController {
     private final QuestionService questionService;
     private final AnswerService answerService;
 
-    @PostMapping("/create/{id}")
-    public String createAnswer(Model model, @PathVariable("id") Integer id, @Valid AnswerForm answerForm, BindingResult bindingResult){
-        Question question = this.questionService.getQuestion(id);
+    private final AnswerCommentService answerCommentService;
+
+    @PostMapping("/create/detail/{questionId}/{answerId}")
+    public String createAnswer(Model model, @PathVariable("questionId") Integer questionId, @PathVariable("answerId") Integer answerId, @Valid AnswerCommentForm answerCommentForm, BindingResult bindingResult){
+        Answer answer = this.answerService.getComment(answerId);
+        Question question = this.questionService.getQuestion(questionId);
         if(bindingResult.hasErrors()){
-            model.addAttribute("question", question);
+            model.addAttribute("answer", answer);
             return "question_detail";
         }
-        this.answerService.create(question, answerForm.getContent());
-        return String.format("redirect:/question/list/detail/%s", id);
+        this.answerCommentService.create(answer,question, answerCommentForm.getContent());
+        return String.format("redirect:/question/list/detail/%s", questionId);
     }
 
-    @PostMapping("/detail/like/{questionId}/{answerId}")
+   /* @PostMapping("/detail/like/{questionId}/{answerId}")
     public String createAnswer(@PathVariable("questionId") Integer questionId, @PathVariable("answerId") Integer answerId) {
         this.answerService.setLike(answerId);
 
@@ -46,6 +50,5 @@ public class AnswerCommentController {
         this.answerService.setLike(answerId);
         return "redirect:/question/list";
     }
-
-}
 */
+}

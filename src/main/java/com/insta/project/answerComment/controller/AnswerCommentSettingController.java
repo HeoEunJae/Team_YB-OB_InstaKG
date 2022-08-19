@@ -1,25 +1,18 @@
-/*
 package com.insta.project.answerComment.controller;
 
-import com.insta.project.answer.AnswerForm;
 import com.insta.project.answer.AnswerService;
-import com.insta.project.answer.domain.Answer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/comment")
+@RequestMapping("/co")
 @RequiredArgsConstructor
 public class AnswerCommentSettingController {
     private final AnswerService answerService;
 
-    @GetMapping("/delete/{id}")
+   /* @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Integer id){
         Answer answer = this.answerService.getComment(id);
         this.answerService.delete(answer);
@@ -44,8 +37,7 @@ public class AnswerCommentSettingController {
         this.answerService.modify(answer, answerForm.getContent(), onOff);
         return String.format("redirect:/question/list/detail/%s",answer.getQuestion().getId());
     }
-
+*/
 
 }
 
-*/

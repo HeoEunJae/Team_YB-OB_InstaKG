@@ -13,12 +13,23 @@ CREATE TABLE Question (
     answer_id INT(11) UNSIGNED
 );
 
+
 CREATE TABLE Answer (
     id INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     content TEXT NOT NULL,
     create_date DATETIME NOT NULL,
     modify_date DATETIME DEFAULT NOW(),
     question_id INT(11) UNSIGNED NOT NULL,
+    reply_like VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE answer_comment (
+    id INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    content TEXT NOT NULL,
+    create_date DATETIME NOT NULL,
+    modify_date DATETIME DEFAULT NOW(),
+    question_id INT(11) UNSIGNED NOT NULL,
+    answer_id INT(11) UNSIGNED NOT NULL,
     reply_like VARCHAR(10) NOT NULL
 );
 
@@ -36,17 +47,8 @@ email TEXT UNIQUE NOT NULL,
 phone TEXT NOT NULL
 );
 
-CREATE TABLE AnswerComment (
-    id INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    content TEXT NOT NULL,
-    create_date DATETIME NOT NULL,
-    modify_date DATETIME DEFAULT NOW(),
-    Answer_id INT(11) UNSIGNED NOT NULL,
-    reply_like VARCHAR(10) NOT NULL
-);
-
-
 SELECT * FROM `user`;
 SELECT * FROM Question;
 SELECT * FROM Answer;
+SELECT * FROM answer_comment;
 SELECT * FROM files;

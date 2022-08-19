@@ -72,24 +72,47 @@
                                         <div class="card-body bg-white ">
                                             <div th:each="answer : ${question.answerList}"
                                                  class="border-bottom my-2">
+                                                <button type="button" class="btn form-inline pt-0 pb-10 "
+                                                        id="myModal"
+                                                        style="float:right;"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal" th:data-id="${answer.id}"
+                                                        th:data-content="${question.content}">
+                                                    <img src="https://img.icons8.com/stickers/344/ellipsis.png"
+                                                         width="20" height="20"
+                                                         alt="">
+                                                </button>
+                                                <div th:text="${answer.content}"></div>
+                                                <div class="d-flex justify-content-between align-items-center w-100" >
+                                                    <div class="pr-2"
+                                                         th:text="${#temporals.format(answer.createDate, 'M월 d일')}"></div>
+                                                    <!--  <form th:action="@{|/answer/create/detail/${question.id}/${answer.id}|}"
+                                                            method="post" class="w-50">
+                                                          <input name="content" class="w-100 border-0 p-2 h-25"
+                                                                    type="text"
+                                                                    placeholder="답글달기">
+                                                          <button type="submit" class="btn">
+                                                              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                                                   class="bi bi-check2" viewBox="0 0 16 16">
+                                                                  <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                                              </svg>
+                                                          </button>
+                                                      </form>-->
+                                                    <div class="position-relative w-50">
+                                                        <form th:action="@{|/answer/create/detail/${question.id}/${answer.id}|}"
+                                                              method="post">
+                                                            <input name="content" class="w-100 border-0" type="text"
+                                                                   placeholder="답글달기">
+                                                            <button type="submit"
+                                                                    class="position-absolute btn-st fw-bold">
+                                                                확인
+                                                            </button>
+                                                        </form>
+                                                    </div>
 
-                                                <div class="d-flex justify-content-between">
-                                                    <div th:text="${answer.content}"></div>
-                                                    <button type="button" class="btn form-inline pt-0 pb-10"
-                                                            id="myModal"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#exampleModal" th:data-id="${answer.id}"
-                                                            th:data-content="${question.content}">
-                                                        <img src="https://img.icons8.com/stickers/344/ellipsis.png"
-                                                             width="20" height="20"
-                                                             alt="">
-                                                    </button>
-                                                </div>
-                                                <div class="d-flex justify-content-between">
-                                                    <div th:text="${#temporals.format(answer.createDate, 'M월 d일')}"></div>
                                                     <!-- 좋아요 싫어요 -->
                                                     <form th:action="@{|/answer/detail/like/${question.id}/${answer.id}|}"
-                                                          method="post">
+                                                          method="post" style="float:right;">
                                                         <div th:if="${answer.replyLike}">
                                                             <button class="btn pr-5  pt-0 m-0">
                                                                 <svg type="submit"
@@ -116,6 +139,8 @@
                                                         </div>
                                                     </form>
                                                 </div>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -324,6 +349,11 @@ function move(url){
     sessionStorage.removeItem("answer_id");
 }
 //파일이름 쪼개기
+
+
+
+
+
 
 
 
