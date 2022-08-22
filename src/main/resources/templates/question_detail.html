@@ -152,9 +152,9 @@
                                                                          th:text="${#temporals.format(answerComments.createDate, 'M/d')}">
                                                                     </div>
                                                                     <!-- 좋아요 싫어요 -->
-                                                                    <!-- <form th:action="@{|/answer/detail/like/${question.id}/${answer.id}|}"
+                                                                     <form th:action="@{|/answer/comment/detail/like/${question.id}/${answer.id}/${answerComments.id}|}"
                                                                            method="post" style="float:right;">
-                                                                         <div th:if="${answer.replyLike}">
+                                                                         <div th:if="${answerComments.replyLike}">
                                                                              <button class="btn pr-5 pt-0 m-0">
                                                                                  <svg type="submit"
                                                                                       xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +166,7 @@
                                                                                  </svg>
                                                                              </button>
                                                                          </div>
-                                                                         <div th:if="!${answer.replyLike}">
+                                                                         <div th:if="!${answerComments.replyLike}">
                                                                              <button class="btn pr-5 pt-0 m-0">
                                                                                  <svg type="submit"
                                                                                       xmlns="http://www.w3.org/2000/svg"
@@ -179,7 +179,7 @@
                                                                                  </svg>
                                                                              </button>
                                                                          </div>
-                                                                     </form>-->
+                                                                     </form>
                                                                 </div>
                                                             </div>
                                                         </div>

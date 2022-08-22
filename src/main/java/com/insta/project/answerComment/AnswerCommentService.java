@@ -23,4 +23,14 @@ public class AnswerCommentService {
         this.answerCommentRepository.save(answerComment);
     }
 
+    public void setLike(Integer answerCommentsId) {
+        AnswerComment answerComment = answerCommentRepository.findById(answerCommentsId).get();
+        if(answerComment.getReplyLike()==true) {
+            answerComment.setReplyLike(false);
+        } else {
+            answerComment.setReplyLike(true);
+        }
+        this.answerCommentRepository.save(answerComment);
+    }
+
 }
