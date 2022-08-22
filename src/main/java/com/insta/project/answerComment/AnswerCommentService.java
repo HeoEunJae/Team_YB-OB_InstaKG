@@ -1,5 +1,6 @@
 package com.insta.project.answerComment;
 
+import com.insta.project.DataNotFoundException;
 import com.insta.project.answer.domain.Answer;
 import com.insta.project.answerComment.dao.AnswerCommentRepository;
 import com.insta.project.answerComment.domain.AnswerComment;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -33,4 +35,22 @@ public class AnswerCommentService {
         this.answerCommentRepository.save(answerComment);
     }
 
+    public AnswerComment getAnswerComment(Integer id){
+        Optional<AnswerComment> answerComment = this.answerCommentRepository.findById(id);
+        if (answerComment.isPresent()) {
+            return answerComment.get();
+        } else {
+            throw new DataNotFoundException("question not found");
+        }
+    }
+
+    public void delete(AnswerComment answerComment) {
+        this.answerCommentRepository.delete(answerComment);
+    }
+
+    public void modify(AnswerComment answerComment, String content) {
+        answerComment.setContent(content);
+        answerComment.setModifyDate(LocalDateTime.now());
+        this.answerCommentRepository.save(answerComment);
+    }
 }

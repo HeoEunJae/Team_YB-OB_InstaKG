@@ -40,7 +40,7 @@ public class CommentSettingController {
             model.addAttribute("answer", answer);
             return "CommentModify";
         }
-        this.answerService.modify(answer, answerForm.getContent(), onOff);
+        this.answerService.modify(answer, answerForm.getContent());
         return String.format("redirect:/question/list/detail/%s",answer.getQuestion().getId());
     }
 

@@ -1,43 +1,49 @@
 package com.insta.project.answerComment.controller;
 
-import com.insta.project.answer.AnswerService;
+import com.insta.project.answer.AnswerForm;
+import com.insta.project.answerComment.AnswerCommentForm;
+import com.insta.project.answerComment.AnswerCommentService;
+import com.insta.project.answerComment.domain.AnswerComment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
 @Controller
 @RequestMapping("/co")
 @RequiredArgsConstructor
 public class AnswerCommentSettingController {
-    private final AnswerService answerService;
+    private final AnswerCommentService answerCommentService;
 
-   /* @GetMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Integer id){
-        Answer answer = this.answerService.getComment(id);
-        this.answerService.delete(answer);
-        return String.format("redirect:/question/list/detail/%s",answer.getQuestion().getId());
+        AnswerComment answerComment = this.answerCommentService.getAnswerComment(id);
+        this.answerCommentService.delete(answerComment);
+        return String.format("redirect:/question/list/detail/%s",answerComment.getQuestion().getId());
     }
 
     @GetMapping("/modify/{id}")
     public String modify(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) {
-        Answer answer = this.answerService.getComment(id);
+        AnswerComment answerComment = this.answerCommentService.getAnswerComment(id);
         answerForm.setContent(answerForm.getContent());
-        model.addAttribute("answer", answer);
-        return "CommentModify";
+        model.addAttribute("answer", answerComment);
+        return "AnswerCommentModify";
     }
 
     @PostMapping("/modify/{id}")
-    public String modify(Model model, @PathVariable("id") Integer id, @RequestParam(value = "onOff", required = false) Boolean onOff, @Valid AnswerForm answerForm, BindingResult bindingResult) {
-        Answer answer = this.answerService.getComment(id);
+    public String modify(Model model, @PathVariable("id") Integer id, @RequestParam(value = "onOff", required = false) Boolean onOff, @Valid AnswerCommentForm answerCommentForm, BindingResult bindingResult) {
+        AnswerComment answerComment = this.answerCommentService.getAnswerComment(id);
         if (bindingResult.hasErrors()) {
-            model.addAttribute("answer", answer);
-            return "CommentModify";
+            model.addAttribute("answer", answerComment);
+            return "AnswerCommentModify";
         }
-        this.answerService.modify(answer, answerForm.getContent(), onOff);
-        return String.format("redirect:/question/list/detail/%s",answer.getQuestion().getId());
+        this.answerCommentService.modify(answerComment, answerCommentForm.getContent());
+        return String.format("redirect:/question/list/detail/%s",answerComment.getQuestion().getId());
     }
-*/
 
 }
 

@@ -45,7 +45,7 @@ public class AnswerService {
         this.answerRepository.delete(answer);
     }
 
-    public void modify(Answer answer, String content, Boolean onOff){
+    public void modify(Answer answer, String content){
         answer.setContent(content);
         answer.setModifyDate(LocalDateTime.now());
         this.answerRepository.save(answer);
