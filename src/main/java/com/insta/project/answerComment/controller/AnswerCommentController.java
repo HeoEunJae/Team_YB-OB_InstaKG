@@ -38,17 +38,12 @@ public class AnswerCommentController {
         return String.format("redirect:/question/list/detail/%s", questionId);
     }
 
-   /* @PostMapping("/detail/like/{questionId}/{answerId}")
-    public String createAnswer(@PathVariable("questionId") Integer questionId, @PathVariable("answerId") Integer answerId) {
-        this.answerService.setLike(answerId);
+    @PostMapping("/comment/detail/like/{questionId}/{answerId}/{answerCommentsId}")
+    public String createCommentsAnswer(@PathVariable("questionId") Integer questionId, @PathVariable("answerId") Integer answerId, @PathVariable("answerCommentsId") Integer answerCommentsId) {
+        this.answerCommentService.setLike(answerCommentsId);
 
         return String.format("redirect:/question/list/detail/%s", questionId);
     }
 
-    @PostMapping("/like/{questionId}/{answerId}")
-    public String createAnswers(@PathVariable("questionId") Integer questionId, @PathVariable("answerId") Integer answerId) {
-        this.answerService.setLike(answerId);
-        return "redirect:/question/list";
-    }
-*/
 }
+
