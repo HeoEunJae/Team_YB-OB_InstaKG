@@ -43,6 +43,7 @@ public class QuestionController {
     public String showDetail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm){
         Question question = this.questionService.getQuestion(id);
         Collections.sort(question.getAnswerList(), (a, b) -> b.getId() - a.getId());
+        Collections.sort(question.getAnswerCommentsList(), (a, b) -> b.getId() - a.getId());
         model.addAttribute("question", question);
         return "question_detail";
     }
