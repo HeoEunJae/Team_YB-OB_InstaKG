@@ -56,9 +56,9 @@
                                                              style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
                                                     </div>
                                                 </a>
-                                                    <div class="d-flex justify-content-start">
-                                                        <span class="fw-bold">꼬솜우비</span>
-                                                    </div>
+                                                <div class="d-flex justify-content-start">
+                                                    <span class="fw-bold">꼬솜우비</span>
+                                                </div>
 
                                             </div>
                                             <!--옵션(모달창)-->
@@ -99,11 +99,11 @@
                                             <ul class="list-inline">
                                                 <li class="list-inline-item">
                                                     <!-- 좋아요 싫어요 -->
-                                                    <form th:action="@{|/question/like|}"
-                                                          method="post">
-                                                        <div th:if="${question.replyLike}">
-                                                            <a idx="${question.id}" href="javascript:"
-                                                               class="btn p-0 heart-click">
+                                                    <div th:if="${question.replyLike}">
+                                                        <button type="button"
+                                                                th:onclick="'javascript:questionLike('+${question.id}+')'"
+                                                                class="btn p-0 heart-click">
+                                                            <div th:id="'questionLike'+${question.id}">
                                                                 <svg type="submit" xmlns="http://www.w3.org/2000/svg"
                                                                      width="1.5em"
                                                                      height="1.5em" fill="currentColor"
@@ -111,10 +111,14 @@
                                                                      viewBox="0 0 16 16">
                                                                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                                                                 </svg>
-                                                            </a>
-                                                        </div>
-                                                        <div th:if="!${question.replyLike}">
-                                                            <a idx="${question.id}" href="javascript:" class="btn p-0">
+                                                            </div>
+                                                        </button>
+                                                    </div>
+                                                    <div th:if="!${question.replyLike}">
+                                                        <button type="button"
+                                                                th:onclick="'javascript:questionLike('+${question.id}+')'"
+                                                                class="btn p-0 heart-click">
+                                                            <div th:id="'questionLike'+${question.id}">
                                                                 <svg type="submit" xmlns="http://www.w3.org/2000/svg"
                                                                      width="1.5em"
                                                                      height="1.5em"
@@ -122,9 +126,9 @@
                                                                      viewBox="0 0 16 16">
                                                                     <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
                                                                 </svg>
-                                                            </a>
-                                                        </div>
-                                                    </form>
+                                                            </div>
+                                                        </button>
+                                                    </div>
                                                 </li>
                                                 <!-- 댓글로 이동 -->
                                                 <li class="list-inline-item ms-2">
@@ -190,10 +194,11 @@
                                                             <spanp class="text-muted"
                                                                    th:text="${answer.content}"></spanp>
                                                         </div>
-                                                        <form th:action="@{|/question/like/${question.id}|}"
-                                                              method="post">
-                                                            <div th:if="${question.replyLike}">
-                                                                <button class="btn pr-5 pb-0 pt-0 m-0">
+                                                        <div th:if="${answer.replyLike}">
+                                                            <button type="button"
+                                                                    th:onclick="'javascript:answerLike('+${answer.id}+')'"
+                                                                    class="btn pr-5 pb-0 pt-0 m-0">
+                                                                <div th:id="'answerLike'+${answer.id}">
                                                                     <svg type="submit"
                                                                          xmlns="http://www.w3.org/2000/svg"
                                                                          width="1em"
@@ -202,10 +207,14 @@
                                                                          viewBox="0 0 16 16">
                                                                         <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                                                                     </svg>
-                                                                </button>
-                                                            </div>
-                                                            <div th:if="!${question.replyLike}">
-                                                                <button class="btn pr-5 pb-0 pt-0 m-0">
+                                                                </div>
+                                                            </button>
+                                                        </div>
+                                                        <div th:if="!${answer.replyLike}">
+                                                            <button type="button"
+                                                                    th:onclick="'javascript:answerLike('+${answer.id}+')'"
+                                                                    class="btn pr-5 pb-0 pt-0 m-0">
+                                                                <div th:id="'answerLike'+${answer.id}">
                                                                     <svg type="submit"
                                                                          xmlns="http://www.w3.org/2000/svg"
                                                                          width="1em"
@@ -214,9 +223,9 @@
                                                                          viewBox="0 0 16 16">
                                                                         <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
                                                                     </svg>
-                                                                </button>
-                                                            </div>
-                                                        </form>
+                                                                </div>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </spanp>
                                             </div>
@@ -568,47 +577,41 @@ function move(url){
 }
 
 
-//ajax 좋아요 싫어요
-$(".heart-click").click(function(){
-    let no = $(this).attr('idx');
-    console.log("heart-click");
 
-    if($(this).children('svg').attr('class') == "bi bi-star"){
-        console.log("빈하트 클릭" + no);
+//ajax 좋아요 싫어요(게시글, 댓글)
+function questionLike(id){
+    $.ajax({
+        url : "/question/like/"+id,
+        type : 'POST',
+        data : {
+            id : id,
+        }
+    })
+    .done(function (fragment){
+        if(fragment == 1){
+            $('#questionLike'+id).html('<svg type="submit" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/> </svg>');
+        }else{
+            $('#questionLike'+id).html('<svg type="submit" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16"> <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/> </svg>');
+        }
+    });
+}
 
-        $.ajax({
-            url : '/question/like',
-            type : 'get',
-            data : {
-                no : no,
-            },
-            success : function(){
-                console.log("성공");
-            },
-            error : function(){
-                console.log("서버에러");
-            }
-        });
-        $(this).html('<svg type="submit" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/> </svg>');
-    }else if($(this).children('svg').attr('class') == "bi bi-star-fill"){
-        console.log("꽉찬하트 클릭" + no);
-
-        $.ajax({
-            url : '/question/like',
-            type : 'get',
-            data : {
-                no : no,
-            },
-            success : function(){
-                console.log("성공");
-            },
-            error : function(){
-                console.log("서버에러");
-            }
-        });
-        $(this).html('<svg type="submit" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16"> <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/> </svg>');
-    }
-});
+function answerLike(id){
+    $.ajax({
+        url : "/answer/detail/like/"+id,
+        type : 'POST',
+        data : {
+            id : id,
+        }
+    })
+    .done(function (fragment){
+        if(fragment == 1){
+            $('#answerLike'+id).html('<svg type="submit" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/> </svg>');
+        }else{
+            $('#answerLike'+id).html('<svg type="submit" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16"> <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/> </svg>');
+        }
+    });
+}
 
 
 
