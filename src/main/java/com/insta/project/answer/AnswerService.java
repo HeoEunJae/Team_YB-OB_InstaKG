@@ -31,7 +31,7 @@ public class AnswerService {
         this.answerRepository.save(answer);
     }
 
-    public void setLike(Integer answerId) {
+    public Integer setLike(Integer answerId) {
         Answer answer = answerRepository.findById(answerId).get();
         if(answer.getReplyLike() == 1) {
             answer.setReplyLike(0);
@@ -39,6 +39,7 @@ public class AnswerService {
             answer.setReplyLike(1);
         }
         this.answerRepository.save(answer);
+        return answer.getReplyLike();
     }
 
     public void delete(Answer answer){

@@ -106,7 +106,7 @@ public class QuestionService {
     }
 */
 
-    public void setLike(Integer questionId) {
+    public Integer setLike(Integer questionId) {
         Question question = questionRepository.findById(questionId).get();
 
         if(question.getReplyLike() == 1){
@@ -115,6 +115,7 @@ public class QuestionService {
             question.setReplyLike(1);
         }
         this.questionRepository.save(question);
+        return question.getReplyLike();
     }
 
 

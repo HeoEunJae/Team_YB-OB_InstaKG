@@ -71,23 +71,11 @@ public class QuestionController {
     }
 
     @RequestMapping("/like/{id}")
-    public String questionLike(@PathVariable("id") Integer id){
-        this.questionService.setLike(id);
-        return "redirect:/question/list";
+    @ResponseBody
+    public Integer questionLike(@PathVariable("id") Integer id){
+        return this.questionService.setLike(id);
     }
 
-    @RequestMapping("/like")
-    public String questionlike(@RequestParam("id") Integer id){
-        this.questionService.setLike(id);
-        return "redirect:/question/list";
-    }
-
-
-    @PostMapping("/detail/like/{id}")
-    public String questionDetailLike(@PathVariable("id") Integer id){
-        this.questionService.setLike(id);
-        return String.format("redirect:/question/list/detail/%s",id);
-    }
 
     @GetMapping("/profile")
 //    @ResponseBody

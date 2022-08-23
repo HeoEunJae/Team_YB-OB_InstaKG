@@ -27,24 +27,24 @@ public class AnswerComment{
 
     private LocalDateTime modifyDate;
 
-    private Boolean replyLike;
+    private Integer replyLike;
 
 
     @ManyToOne
     private Question question;
     @ManyToOne
     private Answer answer;
-    @Converter
-    class BooleanToYNConverter implements AttributeConverter<Boolean, String>{
-        @Override
-        public String convertToDatabaseColumn(Boolean attribute){
-            return (attribute != null && attribute) ? "Y" : "N";
-        }
-
-        @Override
-        public Boolean convertToEntityAttribute(String dbData){
-            return "Y".equals(dbData);
-        }
-    }
+//    @Converter
+//    class BooleanToYNConverter implements AttributeConverter<Boolean, String>{
+//        @Override
+//        public String convertToDatabaseColumn(Boolean attribute){
+//            return (attribute != null && attribute) ? "Y" : "N";
+//        }
+//
+//        @Override
+//        public Boolean convertToEntityAttribute(String dbData){
+//            return "Y".equals(dbData);
+//        }
+//    }
 
 }

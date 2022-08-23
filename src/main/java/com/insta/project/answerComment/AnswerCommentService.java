@@ -21,18 +21,19 @@ public class AnswerCommentService {
         answerComment.setCreateDate(LocalDateTime.now());
         answerComment.setAnswer(answer);
         answerComment.setQuestion(question);
-        answerComment.setReplyLike(false);
+        answerComment.setReplyLike(0);
         this.answerCommentRepository.save(answerComment);
     }
 
-    public void setLike(Integer answerCommentsId) {
+    public Integer setLike(Integer answerCommentsId) {
         AnswerComment answerComment = answerCommentRepository.findById(answerCommentsId).get();
-        if(answerComment.getReplyLike()==true) {
-            answerComment.setReplyLike(false);
+        if(answerComment.getReplyLike()==1) {
+            answerComment.setReplyLike(0);
         } else {
-            answerComment.setReplyLike(true);
+            answerComment.setReplyLike(1);
         }
         this.answerCommentRepository.save(answerComment);
+        return answerComment.getReplyLike();
     }
 
     public AnswerComment getAnswerComment(Integer id){
