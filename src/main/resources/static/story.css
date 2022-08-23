@@ -112,8 +112,6 @@ height:1.5em;
   overflow:auto;
   }
 
-.QuestionDetailImgStatic{
-position: static;
-min-height: 650px;
-max-height: 650px;
+.QuestionDetailSizeContain{
+ background-size: contain;
 }
