@@ -30,6 +30,7 @@
 		}
     }
 
+
     </style>
 </head>
 <body class="bg-light">
@@ -49,35 +50,39 @@
                     </div>
                     <!-- 페이스북으로 로그인 버튼 -->
                     <div id="data">
-                        <button class="btn btn-info"><img width="25" height="25" th:src="@{img/facebook-icon-white.png}">Facebook으로 로그인</button>
+                        <button class="btn btn-info"><img width="25" height="25"
+                                                          th:src="@{img/facebook-icon-white.png}">Facebook으로 로그인
+                        </button>
                     </div>
                     <!-- 또는 관련 -->
                     <div id="data">
                         <h6><span>또는</span></h6>
                     </div>
                     <!-- 유저 아이디 관련 -->
-                    <div class="m-3">
-                        <input type="text" class="form-control bg-light" placeholder="휴대폰 번호 또는 이메일 주소">
-                    </div>
-                    <!-- 유저 성명 관련 -->
-                    <div class="m-3">
-                        <input type="text" class="form-control bg-light" placeholder="성명">
-                    </div>
-                    <!-- 유저 닉네임 관련 -->
-                    <div class="m-3">
-                        <input type="text" class="form-control bg-light" placeholder="사용자 이름">
-                    </div>
-                    <!-- 비밀번호 관련 -->
-                    <div class="m-3">
-                        <input type="password" class="form-control bg-light" placeholder="비밀번호">
-                    </div>
-                    <div id="tail">
-                        <span>서비스를 이용하는 사람이 회원님의 연락처 정보를 Instakg에 업로드했을 수도 있습니다.</span>
-                    </div>
-                    <!-- 가입 버튼 관련 -->
-                    <div id="with">
-                        <button class="btn btn-info">가입</button>
-                    </div>
+                    <form action="/signup" method="POST">
+                        <div class="m-3">
+                            <input type="email" name="email" class="form-control bg-light" placeholder="휴대폰 번호 또는 이메일 주소">
+                        </div>
+                        <!-- 유저 성명 관련 -->
+                        <div class="m-3">
+                            <input type="text" name="name" class="form-control bg-light" placeholder="성명">
+                        </div>
+                        <!-- 유저 닉네임 관련 -->
+                        <div class="m-3">
+                            <input type="text" name="username" class="form-control bg-light" placeholder="사용자 이름">
+                        </div>
+                        <!-- 비밀번호 관련 -->
+                        <div class="m-3">
+                            <input type="password" name="password" class="form-control bg-light" placeholder="비밀번호">
+                        </div>
+                        <div id="tail">
+                            <span>서비스를 이용하는 사람이 회원님의 연락처 정보를 Instakg에 업로드했을 수도 있습니다.</span>
+                        </div>
+                        <!-- 가입 버튼 관련 -->
+                        <div id="with">
+                            <button class="btn btn-info">가입</button>
+                        </div>
+                    </form>
                     <div id="warning">
                         <span class="text-danger" th:if="${param.error}"> 휴대폰 번호 또는 이메일이 다르거나 사용자 이름이 불가능합니다. 다른 이름을 사용하세요. </span>
                     </div>
@@ -87,20 +92,20 @@
 
                     </div> -->
                     <!-- 비밀번호 찾기 관련 -->
-                   <!-- <div id="data">
-                        <p class="h6"><a href="#">비밀번호를 잊으셨나요?</a></p>
-                    </div> -->
+                    <!-- <div id="data">
+                         <p class="h6"><a href="#">비밀번호를 잊으셨나요?</a></p>
+                     </div> -->
                 </div>
             </div>
             <div id="join">
-                <p>계정이 있으신가요? <a href="#">로그인</a></p>
+                <p>계정이 있으신가요? <a href="/login">로그인</a></p>
             </div>
         </div>
         <!-- 푸터바 내용-->
-       <!-- <div class="container-fluid">
-            <div class="mx-auto mt-5 bg-primary" style="max-width:600px">정보란1</div>
-            <div class="mx-auto bg-primary" style="max-width:600px">정보란2</div>
-        </div> -->
+        <!-- <div class="container-fluid">
+             <div class="mx-auto mt-5 bg-primary" style="max-width:600px">정보란1</div>
+             <div class="mx-auto bg-primary" style="max-width:600px">정보란2</div>
+         </div> -->
         <!-- 모든 것들을 중앙에 정렬 -->
         <!--<div class="container d-flex justify-content-center align-items-center">-->
         <!--    <div class="p-3 m-2 bg-white" id="container-data">-->
