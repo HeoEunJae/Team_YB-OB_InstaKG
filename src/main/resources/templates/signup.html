@@ -97,7 +97,7 @@
                     </form>
 
                     <div id="warning">
-                        <span class="text-danger" th:if="${param.error}"> 이메일 계정이 이미 존재합니다. 다른 이메일을 사용하세요. </span>
+                        <span class="text-danger" th:if="${error == 1}"> 이메일 계정이 이미 존재합니다. 다른 이메일을 사용하세요. </span>
                     </div>
                     <!-- 페이스북 Oauth 관련 -->
                     <!--<div id="facebook">
