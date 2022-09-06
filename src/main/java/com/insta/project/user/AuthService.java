@@ -24,4 +24,11 @@ public class AuthService {
         userEntity = userRepository.save(user);
         return userEntity;
     }
+
+    public boolean existEmail(String email) {
+        if(userRepository.existsByEmail(email)){
+            return true;
+        }
+        return false;
+    }
 }

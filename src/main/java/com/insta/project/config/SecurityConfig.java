@@ -1,6 +1,5 @@
 package com.insta.project.config;
 
-import com.insta.project.handler.CustomAuthenticationFailureHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,16 +31,11 @@ public class SecurityConfig {
                         .anyRequest().permitAll())
                 //인증 안된 페이지로 가면 로그인 페이지로 보냄
                 .formLogin()
-                .loginPage("/loginForm")
-                .failureHandler(loginFailHandler())
-                .loginProcessingUrl("/login") // login 주소가 호출이 되면 시큐리티가 낚아채서 로그인을 진행함
-                .defaultSuccessUrl("/")
+                .loginPage("/login")
+//                .failureHandler(loginFailHandler())
+//                .loginProcessingUrl("/login") // login 주소가 호출이 되면 시큐리티가 낚아채서 로그인을 진행함
+                .defaultSuccessUrl("/story")
                 .and()
                 .build();
-    }
-
-    @Bean
-    public CustomAuthenticationFailureHandler loginFailHandler(){
-        return new CustomAuthenticationFailureHandler();
     }
 }
