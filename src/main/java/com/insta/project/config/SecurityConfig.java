@@ -34,7 +34,12 @@ public class SecurityConfig {
                 .loginPage("/login")
 //                .failureHandler(loginFailHandler())
 //                .loginProcessingUrl("/login") // login 주소가 호출이 되면 시큐리티가 낚아채서 로그인을 진행함
-                .defaultSuccessUrl("/story")
+                .defaultSuccessUrl("/question/list")
+                .and()
+                .logout()
+               // .logoutRequestMatcher(new AntPathRequestMatcher("/login"))
+                .logoutSuccessUrl("/login")
+                .invalidateHttpSession(true)
                 .and()
                 .build();
     }
