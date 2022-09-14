@@ -52,11 +52,11 @@ public class MainController {
         return "profile";
     }
 
-    @GetMapping("/setprofile")
-//    @ResponseBody
-    public String setprofile() {
-        return "setprofile";
-    }
+//    @GetMapping("/setprofile")
+////    @ResponseBody
+//    public String setprofile() {
+//        return "setprofile";
+//    }
 
     @GetMapping("/")
 //    @ResponseBody
