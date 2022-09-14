@@ -141,7 +141,8 @@
             <div class="modal-content">
                 <div class="modal-body text-center">
 
-                    <a class="Modal-Nomal" th:href="@{/setprofile}">
+                    <a class="Modal-Nomal" th:href="@{/setprofile} ">
+                        <input type="hidden" userDetails="${user.email}">
                         <div>
                             프로필 편집
                         </div>

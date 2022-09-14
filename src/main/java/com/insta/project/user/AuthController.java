@@ -39,7 +39,7 @@ public class AuthController {
     // 회원가입버튼 -> /auth/signup -> /auth/signin
     // 회원가입버튼 X
     @PostMapping("/signup")
-    public String signup(@Valid SignupDto signupDto, BindingResult bindingResult, Model model) { // key=value (x-www-form-urlencoded)
+    public String signup(@Valid  SignupDto signupDto, BindingResult bindingResult, Model model) { // key=value (x-www-form-urlencoded)
         if (bindingResult.hasErrors()) {
             return "signup";
         }
@@ -56,10 +56,10 @@ public class AuthController {
         return "login";
     }
 
-    public String index(@AuthenticationPrincipal UserDetails userDetails) {
-        if(userDetails!=null) {
-            System.out.println(userDetails.getUsername());
-        }
-        return "index";
+    @GetMapping("/setprofile")
+    public String setprofile(@AuthenticationPrincipal UserDetails userDetails, Model model){
+        System.out.println("1111111111111111111"+userDetails.getUsername());
+        model.addAttribute("email", userDetails.getUsername());
+        return "setprofile";
     }
 }
