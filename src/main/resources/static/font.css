@@ -21,6 +21,10 @@
     color: white;
     font-weight: bold;
 }
+/* 프로필 제출 버튼 */
+#p_button{
+    color: white;
+}
 
 /* 또는 폰트 만들어주기기 */
 #data h6{
