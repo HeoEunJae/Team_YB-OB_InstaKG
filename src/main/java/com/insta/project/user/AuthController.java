@@ -3,8 +3,6 @@ package com.insta.project.user;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -54,12 +52,5 @@ public class AuthController {
         User userEntity = authService.회원가입(user);
         System.out.println(userEntity);
         return "login";
-    }
-
-    @GetMapping("/setprofile")
-    public String setprofile(@AuthenticationPrincipal UserDetails userDetails, Model model){
-        System.out.println("1111111111111111111"+userDetails.getUsername());
-        model.addAttribute("email", userDetails.getUsername());
-        return "setprofile";
     }
 }

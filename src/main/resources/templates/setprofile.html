@@ -11,11 +11,11 @@
                                 <div class="d-flex justify-content-center mt-4">
                                     <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center profile-profile-photo">
                                         <!-- 프로필 사진 -->
-                                        <img th:src="@{img/basic-profile-image.png}"
+                                        <img th:src="@{/img/basic-profile-image.png}"
                                              style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
                                     </div>
                                     <div class="d-flex flex-column ms-4">
-                                        <span class="fs-5">사용자1</span>
+                                        <span class="fs-5" th:text="${name}">사용자1</span>
                                         <a class="text-decoration-none fw-bold fs-6" href="#">프로필 사진 바꾸기</a>
                                     </div>
                                 </div>

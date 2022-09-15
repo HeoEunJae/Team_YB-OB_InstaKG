@@ -12,7 +12,7 @@
                                 <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center profile-profile-photo">
                                     <!-- 프로필 사진 -->
                                     <img th:src="@{/img/basic-profile-image.png}"
-                                         style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
+                                         style="transform: scale(1.5); width: 100%; position: absolute; left: 0" />
                                 </div>
                             </a>
                         </div>
@@ -141,8 +141,9 @@
             <div class="modal-content">
                 <div class="modal-body text-center">
 
-                    <a class="Modal-Nomal" th:href="@{/setprofile} ">
+                    <a class="Modal-Nomal" th:href="@{/question/setprofile} ">
                         <input type="hidden" userDetails="${user.email}">
+                        <text type="hidden" userDetails="${user.name}">
                         <div>
                             프로필 편집
                         </div>

@@ -77,12 +77,12 @@ public class QuestionController {
     }
 
 
-    @GetMapping("/profile")
-//    @ResponseBody
-    public String profile(Model model){
-        List<Question> questionList = this.questionService.getList();
-        Collections.sort(questionList, (a, b) -> b.getId() - a.getId());
-        model.addAttribute("question", questionList);
-        return "profile";
-    }
+//    @GetMapping("/profile")
+////    @ResponseBody
+//    public String profile(Model model){
+//        List<Question> questionList = this.questionService.getList();
+//        Collections.sort(questionList, (a, b) -> b.getId() - a.getId());
+//        model.addAttribute("question", questionList);
+//        return "profile";
+//    }
 }
