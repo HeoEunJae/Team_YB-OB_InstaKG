@@ -21,7 +21,7 @@
                     <div class="col-6">
                         <!-- 사용자 아이디 / 프로필 편집 버튼 / 설정버튼 시작 -->
                         <div class="d-flex align-items-center">
-                            <h4>사용자1</h4>
+                            <h4 th:text="${username}">사용자1(유저네임)</h4>
                             <!-- 필요없음
                             <div class="ms-2 border border-dark bg-white">
                                 <a th:href="@{/setprofile}" class="Modal-Nomal">프로필 편집</a>
@@ -59,7 +59,7 @@
                         <!-- 사용자 이름 변경 -->
                         <div class="d-flex justify-content-between mt-3">
                             <div>
-                                <strong>내계정아닌거같은데?</strong>
+                                <strong th:text="${name}">내계정아닌거같은데?(이름수정될때뜨는위치)</strong>
                             </div>
                         </div>
                         <!-- 사용자 소개 내용 시작 -->
@@ -143,7 +143,7 @@
 
                     <a class="Modal-Nomal" th:href="@{/question/setprofile} ">
                         <input type="hidden" userDetails="${user.email}">
-                        <text type="hidden" userDetails="${user.name}">
+                        <text type="hidden" userDetails="${user.username}">
                         <div>
                             프로필 편집
                         </div>

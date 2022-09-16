@@ -8,80 +8,83 @@
                     <div class="col-9">
                         <div class="row">
                             <div class="card">
-                                <div class="d-flex justify-content-center mt-4">
-                                    <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center profile-profile-photo">
-                                        <!-- 프로필 사진 -->
-                                        <img th:src="@{/img/basic-profile-image.png}"
-                                             style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
+                                <form th:action="@{setprofile}" method="post">
+                                    <div class="d-flex justify-content-center mt-4">
+                                        <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center profile-profile-photo">
+                                            <!-- 프로필 사진 -->
+                                            <img th:src="@{/img/basic-profile-image.png}"
+                                                 style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
+                                        </div>
+                                        <div class="d-flex flex-column ms-4">
+                                            <span class="fs-5" th:text="${username}">사용자1(유저네임)</span>
+                                            <a class="text-decoration-none fw-bold fs-6" href="#">프로필 사진 바꾸기</a>
+                                        </div>
                                     </div>
-                                    <div class="d-flex flex-column ms-4">
-                                        <span class="fs-5" th:text="${name}">사용자1</span>
-                                        <a class="text-decoration-none fw-bold fs-6" href="#">프로필 사진 바꾸기</a>
+                                    <!-- 개인정보 수정 시작 -->
+                                    <div class="mt-3 line_set d-flex align-items-center">
+                                        <strong>이름</strong>
+                                        <div class="col-lg-6">
+                                            <input class="txtbox form-control" type="text" name="MDname"
+                                                   placeholder="변경할 이름을 입력해주세요">
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- 개인정보 변경 시작 -->
-                                <div class="mt-3 line_set d-flex align-items-center">
-                                    <strong>이름</strong>
-                                    <div class="col-lg-6">
-                                        <input class="txtbox form-control" type="text" name="username"
-                                               placeholder="변경할 이름을 입력해주세요">
-                                    </div>
-                                </div>
-                                <div class="mt-3 line_set">
+                                    <div class="mt-3 line_set">
                                 <span class="txtsize">사람들이 이름, 별명 또는 비즈니스 이름 등 회원님의 알려진 이름을 사용하여
                                 회원님의 계정을 찾을수 있도록 도와주세요.</span>
-                                </div>
-                                <div class="mt-3 line_set d-flex align-items-center">
-                                    <strong>사용자 이름</strong>
-                                    <div class="col-lg-6">
-                                        <input class="txtbox form-control" type="text" name="nickname"
-                                               placeholder="변경할 사용자 이름을 입력해주세요.">
                                     </div>
-                                </div>
-                                <div class="mt-3 line_set">
-                                    <strong>소개</strong>
-                                    <div class="col-lg-6">
-                                    <textarea class="txtbox form-control" rows="2" type="text" name="introduce"
+                                    <div class="mt-3 line_set d-flex align-items-center">
+                                        <strong>사용자 이름</strong>
+                                        <div class="col-lg-6">
+                                            <input class="txtbox form-control" type="text" name="MDusername"
+                                                   placeholder="변경할 사용자 이름을 입력해주세요.">
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 line_set">
+                                        <strong>소개</strong>
+                                        <div class="col-lg-6">
+                                    <textarea class="txtbox form-control" rows="2" type="text" name="MDbio"
                                               placeholder="소개란을 입력해주세요.">
                                     </textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <div class="mt-4 mb-1 me-1 d-flex justify-content-center">
-                                        <strong class="text-muted">개인정보</strong>
-                                    </div>
-                                    <div class="line_set">
+                                    <div>
+                                        <div class="mt-4 mb-1 me-1 d-flex justify-content-center">
+                                            <strong class="text-muted">개인정보</strong>
+                                        </div>
+                                        <div class="line_set">
                                 <span class="txtsize">비즈니스나 반려동물 등에 사용된 계정인 경우에도 회원님의
                                 개인 정보를 입력하세요. 공개프로필에 포함되지 않습니다.</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mt-3 line_set d-flex align-items-center">
-                                    <strong>이메일</strong>
-                                    <div class="col-lg-6">
-                                        <input class="txtbox form-control" th:value="${email}" readonly/>
+                                    <div class="mt-3 line_set d-flex align-items-center">
+                                        <strong>이메일</strong>
+                                        <div class="col-lg-6">
+                                            <input class="txtbox form-control" th:value="${email}" readonly/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mt-3 line_set d-flex align-items-center">
-                                    <strong>전화번호</strong>
-                                    <div class="col-lg-6">
-                                        <input class="txtbox form-control" type="text" name="email"
-                                               placeholder="전화번호를 입력해주세요.">
+                                    <div class="mt-3 line_set d-flex align-items-center">
+                                        <strong>전화번호</strong>
+                                        <div class="col-lg-6">
+                                            <input class="txtbox form-control" type="tel" name="phone" maxlength="11"
+                                                   onKeyup="this.value=this.value.replace(/[^-0-9]/g,'');"
+                                                   placeholder="(-)를 제외한 전화번호를 입력해주세요."/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mt-3 line_set d-flex align-items-center">
-                                    <strong>성별</strong>
-                                    <div class="col-lg-6">
-                                        <select class="txtbox form-control text-muted">
-                                            <option value="">선택하세요.</option>
-                                            <option value="">남성</option>
-                                            <option value="">여성</option>
-                                            <option value="">밝히고 싶지 않음</option>
-                                        </select>
+                                    <div class="mt-3 line_set d-flex align-items-center">
+                                        <strong>성별</strong>
+                                        <div class="col-lg-6">
+                                            <select class="txtbox form-control text-muted">
+                                                <option value="">선택하세요.</option>
+                                                <option value="">남성</option>
+                                                <option value="">여성</option>
+                                                <option value="">밝히고 싶지 않음</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="radius my-5 d-flex justify-content-center ">
-                                    <button id="p_button" class="btn btn-info fw-bold">제출</button>
-                                </div>
+                                    <div class="radius my-5 d-flex justify-content-center ">
+                                        <button id="p_button" class="btn btn-info fw-bold">제출</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
