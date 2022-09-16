@@ -42,7 +42,8 @@
 
                             <!-- DM 아이콘 -->
                             <li class="list-inline-item ms-2">
-                                <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbnSIr-n5A6fu21xtFbOUzRTb_cRg-QxeythzCivhI_Q&s" class="link-dark">
+                                <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbnSIr-n5A6fu21xtFbOUzRTb_cRg-QxeythzCivhI_Q&s"
+                                   class="link-dark">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5em"
                                          fill="currentColor"
                                          class="bi bi-send" viewBox="0 0 16 16">
@@ -63,6 +64,8 @@
                             </li>
                             <!-- 사람 아이콘-->
                             <li class="list-inline-item ms-2">
+                                <text type="hidden" userDetails="${user.username}"/>
+                                <text type="hidden" userDetails="${user.name}"/>
                                 <a th:href="@{/question/profile}" class="link-dark">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5em"
                                          fill="currentColor"

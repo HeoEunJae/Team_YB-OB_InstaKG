@@ -3,13 +3,16 @@ package com.insta.project;
 import com.insta.project.question.domain.Question;
 import com.insta.project.question.service.QuestionService;
 import com.insta.project.user.AuthService;
+import com.insta.project.user.ModifyDTO;
 import com.insta.project.user.User;
+import com.insta.project.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Collections;
@@ -24,6 +27,7 @@ public class MainController {
 //    private final UserRepository userRepository;
     private final AuthService authService;
     private final QuestionService questionService;
+    private final UserRepository userRepository;
 
 
     //    @PostMapping("/signup")
@@ -60,17 +64,6 @@ public class MainController {
         return "story";
     }
 
-    @GetMapping("/setprofile")
-    public String setprofile(@AuthenticationPrincipal UserDetails userDetails, Model model, User user){
-        user = authService.FindByEmail(userDetails.getUsername());
-        model.addAttribute("userinfo", user);
-        System.out.println("1111111111111111111"+userDetails.getUsername());
-        model.addAttribute("name", user.getName());
-        model.addAttribute("username", user.getUsername());
-        model.addAttribute("email", userDetails.getUsername());
-        return "setprofile";
-    }
-
     @GetMapping("/profile")
 //    @ResponseBody
     public String profile(@AuthenticationPrincipal UserDetails userDetails, Model model, User user) {
@@ -84,6 +77,32 @@ public class MainController {
         model.addAttribute("question", questionList);
         return "profile";
     }
+
+    @GetMapping("/setprofile")
+    public String setprofile(@AuthenticationPrincipal UserDetails userDetails, ModifyDTO modifyDTO, Model model, User user){
+        user = authService.FindByEmail(userDetails.getUsername());
+        model.addAttribute("userinfo", user);
+        System.out.println("1111111111111111111"+userDetails.getUsername());
+        model.addAttribute("name", user.getName());
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("email", userDetails.getUsername());
+        return "setprofile";
+    }
+
+    @PostMapping("/setprofile")
+    public String Update(@AuthenticationPrincipal UserDetails userDetails, ModifyDTO modifyDTO ,Model model, User user){
+        user = authService.FindByEmail(userDetails.getUsername());
+        user.setUsername(modifyDTO.getMDusername());
+        user.setName(modifyDTO.getMDname());
+        user.setBio(modifyDTO.getMDbio());
+
+        userRepository.save(user);
+
+        return "redirect:/question/setprofile";
+    }
+
+
+
 
     @GetMapping("/")
 //    @ResponseBody

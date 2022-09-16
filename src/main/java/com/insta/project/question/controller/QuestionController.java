@@ -75,14 +75,4 @@ public class QuestionController {
     public Integer questionLike(@PathVariable("id") Integer id){
         return this.questionService.setLike(id);
     }
-
-
-//    @GetMapping("/profile")
-////    @ResponseBody
-//    public String profile(Model model){
-//        List<Question> questionList = this.questionService.getList();
-//        Collections.sort(questionList, (a, b) -> b.getId() - a.getId());
-//        model.addAttribute("question", questionList);
-//        return "profile";
-//    }
 }

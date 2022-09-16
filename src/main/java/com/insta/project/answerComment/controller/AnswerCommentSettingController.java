@@ -23,7 +23,7 @@ public class AnswerCommentSettingController {
     public String delete(@PathVariable("id") Integer id){
         AnswerComment answerComment = this.answerCommentService.getAnswerComment(id);
         this.answerCommentService.delete(answerComment);
-        return String.format("redirect:/question/list/detail/%s",answerComment.getQuestion().getId());
+        return String.format("redirect:/instakg/list/detail/%s",answerComment.getQuestion().getId());
     }
 
     @GetMapping("/modify/{id}")
