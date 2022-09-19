@@ -1,6 +1,8 @@
 package com.insta.project.user;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,18 @@ public class AuthService {
         User userEntity = null;
         userEntity = userRepository.save(user);
         return userEntity;
+    }
+
+    @Transactional
+    public void modify(ModifyDTO modifyDTO, @AuthenticationPrincipal UserDetails userDetails){
+        User user = userRepository.findByEmail(userDetails.getUsername());
+        user.modify(
+                modifyDTO.getMDusername(),
+                modifyDTO.getMDname(),
+                modifyDTO.getMDbio(),
+                modifyDTO.getMDphone(),
+                modifyDTO.getMDprofileImageUrl()
+        );
     }
 
     public User FindByEmail(String email){
