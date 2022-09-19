@@ -30,9 +30,21 @@ public class User {
 
     private String bio;
 
+    private String phone;
+
+    private String gender;
+
     private String profileImageUrl;
     private String role;
 
     @CreationTimestamp
     private Timestamp createDate;
+
+    public void modify(String username, String name, String bio, String phone, String profileImageUrl) {
+        this.username = username;
+        this.name = name;
+        this.bio = bio;
+        this.phone = phone;
+        this.profileImageUrl = profileImageUrl;
+    }
 }

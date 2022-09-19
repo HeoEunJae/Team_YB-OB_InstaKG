@@ -5,7 +5,6 @@ import com.insta.project.question.service.QuestionService;
 import com.insta.project.user.AuthService;
 import com.insta.project.user.ModifyDTO;
 import com.insta.project.user.User;
-import com.insta.project.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,90 +23,58 @@ import java.util.List;
 @RequestMapping("/question")
 public class MainController {
 
-//    private final UserRepository userRepository;
     private final AuthService authService;
     private final QuestionService questionService;
-    private final UserRepository userRepository;
 
-
-    //    @PostMapping("/signup")
-//    public String signForm(User user) {
-//        System.out.println("user");
-//        System.out.println(user);
-//        user.setRole("ROLE_USER");
-//        String rawPassword = user.getPassword();
-//        String encPassword = bCryptPasswordEncoder.encode(rawPassword);
-//        user.setPassword(encPassword);
-//        userRepository.save(user);
-//        return "redirect:/login";
-//    }
-//    @GetMapping("/signup")
-////    @ResponseBody
-//    public String signup() {
-//        return "signup";
-//    }
-//    @GetMapping("/login")
-////    @ResponseBody
-//    public String login() {
-//        return "login";
-//    }
-//
-//    @GetMapping("/signup")
-////    @ResponseBody
-//    public String signup() {
-//        return "signup";
-//    }
-
-    @GetMapping("/story")
-//    @ResponseBody
-    public String story() {
+    @GetMapping("/list")
+    public String story(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+        models(userDetails, model);
+        List<Question> questionList = this.questionService.getList();
+        Collections.sort(questionList, (a, b) -> b.getId() - a.getId());
+        model.addAttribute("question", questionList);
         return "story";
     }
 
     @GetMapping("/profile")
 //    @ResponseBody
-    public String profile(@AuthenticationPrincipal UserDetails userDetails, Model model, User user) {
-        user = authService.FindByEmail(userDetails.getUsername());
-        model.addAttribute("userinfo", user);
-        model.addAttribute("name", user.getName());
-        model.addAttribute("username", user.getUsername());
-        model.addAttribute("email", userDetails.getUsername());
+    public String profile(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+        models(userDetails, model);
         List<Question> questionList = this.questionService.getList();
         Collections.sort(questionList, (a, b) -> b.getId() - a.getId());
         model.addAttribute("question", questionList);
         return "profile";
     }
 
+
+
     @GetMapping("/setprofile")
-    public String setprofile(@AuthenticationPrincipal UserDetails userDetails, ModifyDTO modifyDTO, Model model, User user){
-        user = authService.FindByEmail(userDetails.getUsername());
-        model.addAttribute("userinfo", user);
-        System.out.println("1111111111111111111"+userDetails.getUsername());
-        model.addAttribute("name", user.getName());
-        model.addAttribute("username", user.getUsername());
-        model.addAttribute("email", userDetails.getUsername());
+    public String setprofile(@AuthenticationPrincipal UserDetails userDetails, Model model){
+        models(userDetails, model);
         return "setprofile";
     }
 
     @PostMapping("/setprofile")
-    public String Update(@AuthenticationPrincipal UserDetails userDetails, ModifyDTO modifyDTO ,Model model, User user){
-        user = authService.FindByEmail(userDetails.getUsername());
-        user.setUsername(modifyDTO.getMDusername());
-        user.setName(modifyDTO.getMDname());
-        user.setBio(modifyDTO.getMDbio());
-
-        userRepository.save(user);
-
+    public String Update(@AuthenticationPrincipal UserDetails userDetails, ModifyDTO modifyDTO){
+        User user = authService.FindByEmail(userDetails.getUsername());
+        authService.modify(modifyDTO, userDetails);
         return "redirect:/question/setprofile";
     }
 
 
-
-
     @GetMapping("/")
-//    @ResponseBody
     public String question() {
         return "redirect:question/list";
+    }
+
+    public void models(@AuthenticationPrincipal UserDetails userDetails, Model model){
+        User user = authService.FindByEmail(userDetails.getUsername());
+        model.addAttribute("userinfo", user);
+        model.addAttribute("name", user.getName());
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("bio", user.getBio());
+        model.addAttribute("email", userDetails.getUsername());
+        model.addAttribute("phone", user.getPhone());
+        model.addAttribute("gender", user.getGender());
     }
 }
 

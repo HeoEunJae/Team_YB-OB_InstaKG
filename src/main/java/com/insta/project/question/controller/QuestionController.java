@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Collections;
-import java.util.List;
 
 @Controller
 @RequestMapping("/question")
@@ -23,16 +22,6 @@ public class QuestionController {
     private QuestionService questionService;
     @Autowired
     private AnswerService answerService;
-
-
-
-    @RequestMapping("/list")
-    public String showQuestions(Model model) {
-        List<Question> questionList = this.questionService.getList();
-        Collections.sort(questionList, (a, b) -> b.getId() - a.getId());
-        model.addAttribute("question", questionList);
-        return "story";
-    }
 
     @RequestMapping("/user")
     public String UserDetail(Model model) {

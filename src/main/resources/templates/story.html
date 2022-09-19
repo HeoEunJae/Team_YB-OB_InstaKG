@@ -22,7 +22,7 @@
                                                         <img th:src="@{/img/basic-profile-image.png}"
                                                              style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
                                                     </div>
-                                                    <small class="mt-2">사용자1</small>
+                                                    <small class="mt-2">팔로우1</small>
                                                 </div>
                                             </button>
                                         </li>
@@ -34,7 +34,7 @@
                                                         <img th:src="@{/img/basic-profile-image.png}"
                                                              style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
                                                     </div>
-                                                    <small class="mt-2">사용자2</small>
+                                                    <small class="mt-2">팔로우2</small>
                                                 </div>
                                             </button>
                                         </li>
@@ -57,7 +57,7 @@
                                                     </div>
                                                 </a>
                                                 <div class="d-flex justify-content-start">
-                                                    <span class="fw-bold">꼬솜우비</span>
+                                                    <span class="fw-bold" th:text="${username}">꼬솜우비</span>
                                                 </div>
 
                                             </div>
@@ -273,8 +273,8 @@
                                          style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
                                 </div>
                                 <div class="ms-3">
-                                    <span class="profile-info-username">사용자1</span>
-                                    <span class="profile-info-name">사용자1</span>
+                                    <span class="profile-info-username" th:text="${username}">사용자1</span>
+                                    <span class="profile-info-name" th:text="${name}">사용자1</span>
                                 </div>
                             </div>
                             <!-- 오른쪽 프로필 관련 끝-->
