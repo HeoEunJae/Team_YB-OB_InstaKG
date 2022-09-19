@@ -28,13 +28,7 @@ public class MainController {
 
     @GetMapping("/list")
     public String story(@AuthenticationPrincipal UserDetails userDetails, Model model) {
-        User user = authService.FindByEmail(userDetails.getUsername());
-        model.addAttribute("userinfo", user);
-        model.addAttribute("name", user.getName());
-        model.addAttribute("username", user.getUsername());
-        model.addAttribute("bio", user.getBio());
-        model.addAttribute("email", userDetails.getUsername());
-        model.addAttribute("phone", user.getPhone());
+        models(userDetails, model);
         List<Question> questionList = this.questionService.getList();
         Collections.sort(questionList, (a, b) -> b.getId() - a.getId());
         model.addAttribute("question", questionList);
@@ -44,13 +38,7 @@ public class MainController {
     @GetMapping("/profile")
 //    @ResponseBody
     public String profile(@AuthenticationPrincipal UserDetails userDetails, Model model) {
-        User user = authService.FindByEmail(userDetails.getUsername());
-        model.addAttribute("userinfo", user);
-        model.addAttribute("name", user.getName());
-        model.addAttribute("username", user.getUsername());
-        model.addAttribute("bio", user.getBio());
-        model.addAttribute("email", userDetails.getUsername());
-        model.addAttribute("phone", user.getPhone());
+        models(userDetails, model);
         List<Question> questionList = this.questionService.getList();
         Collections.sort(questionList, (a, b) -> b.getId() - a.getId());
         model.addAttribute("question", questionList);
@@ -60,14 +48,8 @@ public class MainController {
 
 
     @GetMapping("/setprofile")
-    public String setprofile(@AuthenticationPrincipal UserDetails userDetails, ModifyDTO modifyDTO, Model model){
-        User user = authService.FindByEmail(userDetails.getUsername());
-        model.addAttribute("userinfo", user);
-//        System.out.println("1111111111111111111"+userDetails.getUsername());
-        model.addAttribute("name", user.getName());
-        model.addAttribute("username", user.getUsername());
-        model.addAttribute("email", userDetails.getUsername());
-        model.addAttribute("phone", user.getPhone());
+    public String setprofile(@AuthenticationPrincipal UserDetails userDetails, Model model){
+        models(userDetails, model);
         return "setprofile";
     }
 
@@ -82,6 +64,17 @@ public class MainController {
     @GetMapping("/")
     public String question() {
         return "redirect:question/list";
+    }
+
+    public void models(@AuthenticationPrincipal UserDetails userDetails, Model model){
+        User user = authService.FindByEmail(userDetails.getUsername());
+        model.addAttribute("userinfo", user);
+        model.addAttribute("name", user.getName());
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("bio", user.getBio());
+        model.addAttribute("email", userDetails.getUsername());
+        model.addAttribute("phone", user.getPhone());
+        model.addAttribute("gender", user.getGender());
     }
 }
 
