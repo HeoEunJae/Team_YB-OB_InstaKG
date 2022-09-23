@@ -12,11 +12,12 @@
                                     <div class="d-flex justify-content-center mt-4">
                                         <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center profile-profile-photo">
                                             <!-- 프로필 사진 -->
-                                            <img th:src="@{/img/basic-profile-image.png}"
-                                                 style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
+                                            <img th:src="${user.profileImagePath}" alt="프로필 이미지" style="transform: scale(1.5); width: 100%; position: absolute; left: 0">
+                                           <!-- <img th:src="@{/img/basic-profile-image.png}"
+                                                 style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/> -->
                                         </div>
                                         <div class="d-flex flex-column ms-4">
-                                            <span class="ms-2 fs-5" th:text="${username}">사용자1(유저네임)</span>
+                                            <span class="ms-2 fs-5" th:text="${user.username}">사용자1(유저네임)</span>
                                             <button type="button" class="btn text-primary fw-bold fs-6 ms-0" id="myModal"
                                                     data-bs-toggle="modal" data-bs-target="#exampleModal">프로필 사진 바꾸기
                                             </button>
@@ -27,7 +28,7 @@
                                         <strong>이름</strong>
                                         <div class="col-lg-6">
                                             <input class="txtbox form-control" type="text" name="MDname"
-                                                   th:value="${name}"
+                                                   th:value="${user.name}"
                                                    placeholder="변경할 이름을 입력해주세요">
                                         </div>
                                     </div>
@@ -39,7 +40,7 @@
                                         <strong>사용자 이름</strong>
                                         <div class="col-lg-6">
                                             <input class="txtbox form-control" type="text" name="MDusername"
-                                                   th:value="${username}"
+                                                   th:value="${user.username}"
                                                    placeholder="변경할 사용자 이름을 입력해주세요.">
                                         </div>
                                     </div>
@@ -47,7 +48,7 @@
                                         <strong>소개</strong>
                                         <div class="col-lg-6">
                                     <textarea class="txtbox form-control" rows="2" type="text" name="MDbio"
-                                              th:text="${bio}"
+                                              th:text="${user.bio}"
                                               placeholder="소개란을 입력해주세요."></textarea>
                                         </div>
                                     </div>
@@ -63,14 +64,14 @@
                                     <div class="mt-3 line_set d-flex align-items-center">
                                         <strong>이메일</strong>
                                         <div class="col-lg-6">
-                                            <input class="txtbox form-control" th:value="${email}" readonly/>
+                                            <input class="txtbox form-control" th:value="${user.email}" readonly/>
                                         </div>
                                     </div>
                                     <div class="mt-3 line_set d-flex align-items-center">
                                         <strong>전화번호</strong>
                                         <div class="col-lg-6">
                                             <input class="txtbox form-control" type="tel" name="MDphone" maxlength="11"
-                                                   th:value="${phone}"
+                                                   th:value="${user.phone}"
                                                    onKeyup="this.value=this.value.replace(/[^-0-9]/g,'');"
                                                    placeholder="(-)를 제외한 전화번호를 입력해주세요."/>
                                         </div>
@@ -78,11 +79,12 @@
                                     <div class="mt-3 line_set d-flex align-items-center">
                                         <strong>성별</strong>
                                         <div class="col-lg-6">
-                                            <select class="txtbox form-control text-muted" name="MDgender">
-                                                <option value="">선택하세요.</option>
-                                                <option value="man">남성</option>
-                                                <option value="woman">여성</option>
-                                                <option value="secret">밝히고 싶지 않음</option>
+                                            <select class="txtbox form-control text-muted" name="MDgender" >
+                                                <option th:if="${user.gender == null}" value="">선택하세요.</option>
+                                                <option th:if="${user.gender != null}" th:value="${user.gender}">[[${user.gender}]]</option>
+                                                <option value="남성">남성</option>
+                                                <option value="여성">여성</option>
+                                                <option value="밝히고 싶지 않음">밝히고 싶지 않음</option>
                                             </select>
                                         </div>
                                     </div>
@@ -104,12 +106,19 @@
             <div class="modal-content">
                 <div class="modal-body text-center">
 
-                    <a class="Modal-Nomal" href="">
+                    <form th:action="@{/question/setprofileImg}" method="post" enctype="multipart/form-data">
                         <div class="filebox">
                             <label for="ex_file">프로필 사진 변경하기</label>
-                            <input type="file" id="ex_file">
+                            <input type="file" id="ex_file" name="profileImageUrl">
                         </div>
-                    </a>
+                        <button type="submit" class="Modal-Nomal">확인</button>
+                    </form>
+<!--                    <a class="Modal-Nomal" href="">-->
+<!--                        <div class="filebox">-->
+<!--                            <label for="ex_file">프로필 사진 변경하기</label>-->
+<!--                            <input type="file" id="ex_file" name="profileImageUrl">-->
+<!--                        </div>-->
+<!--                    </a>-->
                     <hr>
 
                     <a class="Modal-Nomal" href="" data-bs-dismiss="modal">

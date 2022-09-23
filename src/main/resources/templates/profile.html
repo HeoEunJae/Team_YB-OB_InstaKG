@@ -11,8 +11,7 @@
                             <a href="#">
                                 <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center profile-profile-photo">
                                     <!-- 프로필 사진 -->
-                                    <img th:src="@{/img/basic-profile-image.png}"
-                                         style="transform: scale(1.5); width: 100%; position: absolute; left: 0" />
+                                    <img th:src="${user.profileImagePath}" alt="프로필 이미지" style="transform: scale(1.5); width: 100%; position: absolute; left: 0">
                                 </div>
                             </a>
                         </div>
@@ -21,7 +20,7 @@
                     <div class="col-6">
                         <!-- 사용자 아이디 / 프로필 편집 버튼 / 설정버튼 시작 -->
                         <div class="d-flex align-items-center">
-                            <h4 th:text="${username}">사용자1(유저네임)</h4>
+                            <h4 th:text="${user.username}">사용자1(유저네임)</h4>
                             <!-- 필요없음
                             <div class="ms-2 border border-dark bg-white">
                                 <a th:href="@{/setprofile}" class="Modal-Nomal">프로필 편집</a>
@@ -59,13 +58,13 @@
                         <!-- 사용자 이름 변경 -->
                         <div class="d-flex justify-content-between mt-3">
                             <div>
-                                <strong th:text="${name}">내계정아닌거같은데?(이름수정될때뜨는위치)</strong>
+                                <strong th:text="${user.name}">내계정아닌거같은데?(이름수정될때뜨는위치)</strong>
                             </div>
                         </div>
                         <!-- 사용자 소개 내용 시작 -->
                         <div class="d-flex justify-content-between mt-1">
                             <div>
-                                <span th:text="${bio}">소개페이지입니다</span>
+                                <span th:text="${user.bio}">소개페이지입니다</span>
 
                             </div>
                         </div>
@@ -141,10 +140,7 @@
             <div class="modal-content">
                 <div class="modal-body text-center">
 
-                    <a class="Modal-Nomal" th:href="@{/question/setprofile} ">
-                        <input type="hidden" userDetails="${user.email}">
-                        <text type="hidden" userDetails="${user.username}">
-                            <text type="hidden" userDetails="${user.bio}">
+                    <a class="Modal-Nomal" th:href="@{/question/setprofile}">
                         <div>
                             프로필 편집
                         </div>

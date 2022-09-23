@@ -48,11 +48,11 @@
                                     <div class="d-flex align-items-center ms-2">
                                         <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo me-3">
                                             <!-- 게시물 프로필사진 -->
-                                            <img th:src="@{/img/basic-profile-image.png}"
+                                            <img th:src="${user.profileImagePath}" alt="프로필 이미지"
                                                  style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
                                         </div>
                                         <div class="d-flex justify-content-start">
-                                            <span class="fw-bold">꼬솜우비</span>
+                                            <span class="fw-bold" th:text="${user.username}">꼬솜우비</span>
                                         </div>
                                     </div>
                                 </div>

@@ -5,7 +5,11 @@ import com.insta.project.answer.AnswerService;
 import com.insta.project.question.QuestionForm;
 import com.insta.project.question.domain.Question;
 import com.insta.project.question.service.QuestionService;
+import com.insta.project.user.AuthService;
+import com.insta.project.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,19 +27,26 @@ public class QuestionController {
     @Autowired
     private AnswerService answerService;
 
+    @Autowired
+    private AuthService authService;
+
     @RequestMapping("/user")
     public String UserDetail(Model model) {
         return "profile";
     }
 
     @RequestMapping("list/detail/{id}")
-    public String showDetail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm){
+    public String showDetail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm, @AuthenticationPrincipal UserDetails userDetails){
+        User user = authService.FindByEmail(userDetails.getUsername());
         Question question = this.questionService.getQuestion(id);
         Collections.sort(question.getAnswerList(), (a, b) -> b.getId() - a.getId());
         Collections.sort(question.getAnswerCommentsList(), (a, b) -> b.getId() - a.getId());
         model.addAttribute("question", question);
+        model.addAttribute("user", user);
         return "question_detail";
     }
+
+
 
     @GetMapping("/create")
     public String questionCreate(QuestionForm questionForm){

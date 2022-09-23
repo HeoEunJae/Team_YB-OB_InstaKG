@@ -35,16 +35,19 @@ public class User {
     private String gender;
 
     private String profileImageUrl;
+    private String profileImagePath;
+
     private String role;
 
     @CreationTimestamp
     private Timestamp createDate;
 
-    public void modify(String username, String name, String bio, String phone, String profileImageUrl) {
+    public void modify(String username, String name, String bio, String phone, String gender) {
         this.username = username;
         this.name = name;
         this.bio = bio;
         this.phone = phone;
-        this.profileImageUrl = profileImageUrl;
+        this.gender = gender;
+//        this.profileImageUrl = profileImageUrl;
     }
 }
