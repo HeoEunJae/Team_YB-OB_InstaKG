@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collections;
 import java.util.List;
@@ -28,7 +30,9 @@ public class MainController {
 
     @GetMapping("/list")
     public String story(@AuthenticationPrincipal UserDetails userDetails, Model model) {
-        models(userDetails, model);
+        User user = authService.FindByEmail(userDetails.getUsername());
+        model.addAttribute("user", user);
+        //        models(userDetails, model);
         List<Question> questionList = this.questionService.getList();
         Collections.sort(questionList, (a, b) -> b.getId() - a.getId());
         model.addAttribute("question", questionList);
@@ -37,29 +41,37 @@ public class MainController {
 
     @GetMapping("/profile")
 //    @ResponseBody
-    public String profile(@AuthenticationPrincipal UserDetails userDetails, Model model) {
-        models(userDetails, model);
+    public String profile(@AuthenticationPrincipal UserDetails userDetails, Model model) throws Exception {
+        User user = authService.FindByEmail(userDetails.getUsername());
+        model.addAttribute("user", user);
         List<Question> questionList = this.questionService.getList();
         Collections.sort(questionList, (a, b) -> b.getId() - a.getId());
         model.addAttribute("question", questionList);
         return "profile";
     }
 
-
-
     @GetMapping("/setprofile")
-    public String setprofile(@AuthenticationPrincipal UserDetails userDetails, Model model){
-        models(userDetails, model);
-        return "setprofile";
+    public String setprofile(@AuthenticationPrincipal UserDetails userDetails, Model model, ModifyDTO modifyDTO){
+        User user = authService.FindByEmail(userDetails.getUsername());
+        System.out.println(user);
+        model.addAttribute("user",user);
+        return "setprofile.html";
     }
 
     @PostMapping("/setprofile")
-    public String Update(@AuthenticationPrincipal UserDetails userDetails, ModifyDTO modifyDTO){
+    public String Update(@AuthenticationPrincipal UserDetails userDetails, ModifyDTO modifyDTO) throws Exception {
         User user = authService.FindByEmail(userDetails.getUsername());
         authService.modify(modifyDTO, userDetails);
+        System.out.println(">>>>>>>>>>>>>" + modifyDTO.getMDgender());
         return "redirect:/question/setprofile";
     }
 
+    @PostMapping("/setprofileImg")
+    public String imgUpdate(@AuthenticationPrincipal UserDetails userDetails, @RequestParam("profileImageUrl") List<MultipartFile> profileImage) throws Exception {
+        User user = authService.FindByEmail(userDetails.getUsername());
+        authService.ChangeProfileImage(profileImage, user.getEmail());
+        return "redirect:/question/setprofile";
+    }
 
     @GetMapping("/")
     public String question() {
@@ -68,6 +80,7 @@ public class MainController {
 
     public void models(@AuthenticationPrincipal UserDetails userDetails, Model model){
         User user = authService.FindByEmail(userDetails.getUsername());
+        System.out.println(user);
         model.addAttribute("userinfo", user);
         model.addAttribute("name", user.getName());
         model.addAttribute("username", user.getUsername());
@@ -75,6 +88,9 @@ public class MainController {
         model.addAttribute("email", userDetails.getUsername());
         model.addAttribute("phone", user.getPhone());
         model.addAttribute("gender", user.getGender());
+        model.addAttribute("profileImageUrl", user.getProfileImageUrl());
+        model.addAttribute("ProfileImagePath", user.getProfileImagePath());
+
     }
 }
 

@@ -52,12 +52,12 @@
                                                 <a th:href="@{/question/profile}">
                                                     <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo me-3">
                                                         <!-- 게시물 프로필사진 -->
-                                                        <img th:src="@{/img/basic-profile-image.png}"
+                                                        <img th:src="${user.profileImagePath}" alt="프로필 이미지"
                                                              style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
                                                     </div>
                                                 </a>
                                                 <div class="d-flex justify-content-start">
-                                                    <span class="fw-bold" th:text="${username}">꼬솜우비</span>
+                                                    <span class="fw-bold" th:text="${user.username}">[[${user.username}]]</span>
                                                 </div>
 
                                             </div>
@@ -168,11 +168,6 @@
                                         <!-- 게시물 이미지 밑 아이콘 끝-->
                                         <!-- 게시물 라이크 및 내용-->
                                         <div class="list-inline-item d-flex ps-3 pe-3 pb-1 ">
-                                            <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center post-s-profile-photo">
-                                                <!-- 게시물 작은 프로필사진 -->
-                                                <img th:src="@{/img/basic-profile-image.png}"
-                                                     style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
-                                            </div>
                                             <div class="ms-2 mt-1 " th:text="${question.content}"></div>
                                         </div>
                                         <!--댓글막기 유무-->
@@ -190,7 +185,7 @@
 
                                                     <div class="d-flex justify-content-between">
                                                         <div>
-                                                            <strong class="ms-3">김씨</strong>
+                                                            <strong class="ms-3" th:text="${user.username}">김씨</strong>
                                                             <spanp class="text-muted"
                                                                    th:text="${answer.content}"></spanp>
                                                         </div>
@@ -269,12 +264,12 @@
                             <div class="d-flex flex-row align-items-center">
                                 <div class="rounded-circle overflow-hidden border side-profile-photo">
                                     <!-- 오른쪽 큰 프로필사진 -->
-                                    <img th:src="@{/img/basic-profile-image.png}"
+                                    <img th:src="${user.profileImagePath}" alt="프로필 이미지"
                                          style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
                                 </div>
                                 <div class="ms-3">
-                                    <span class="profile-info-username" th:text="${username}">사용자1</span>
-                                    <span class="profile-info-name" th:text="${name}">사용자1</span>
+                                    <span class="profile-info-username" th:text="${user.username}">사용자1</span>
+                                    <span class="profile-info-name" th:text="${user.name}">사용자1</span>
                                 </div>
                             </div>
                             <!-- 오른쪽 프로필 관련 끝-->
