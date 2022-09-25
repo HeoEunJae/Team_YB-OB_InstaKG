@@ -32,7 +32,6 @@ public class MainController {
     public String story(@AuthenticationPrincipal UserDetails userDetails, Model model) {
         User user = authService.FindByEmail(userDetails.getUsername());
         model.addAttribute("user", user);
-        //        models(userDetails, model);
         List<Question> questionList = this.questionService.getList();
         Collections.sort(questionList, (a, b) -> b.getId() - a.getId());
         model.addAttribute("question", questionList);
@@ -51,7 +50,7 @@ public class MainController {
     }
 
     @GetMapping("/setprofile")
-    public String setprofile(@AuthenticationPrincipal UserDetails userDetails, Model model, ModifyDTO modifyDTO){
+    public String setprofile(@AuthenticationPrincipal UserDetails userDetails, Model model){
         User user = authService.FindByEmail(userDetails.getUsername());
         System.out.println(user);
         model.addAttribute("user",user);
@@ -62,7 +61,6 @@ public class MainController {
     public String Update(@AuthenticationPrincipal UserDetails userDetails, ModifyDTO modifyDTO) throws Exception {
         User user = authService.FindByEmail(userDetails.getUsername());
         authService.modify(modifyDTO, userDetails);
-        System.out.println(">>>>>>>>>>>>>" + modifyDTO.getMDgender());
         return "redirect:/question/setprofile";
     }
 
@@ -78,20 +76,20 @@ public class MainController {
         return "redirect:question/list";
     }
 
-    public void models(@AuthenticationPrincipal UserDetails userDetails, Model model){
-        User user = authService.FindByEmail(userDetails.getUsername());
-        System.out.println(user);
-        model.addAttribute("userinfo", user);
-        model.addAttribute("name", user.getName());
-        model.addAttribute("username", user.getUsername());
-        model.addAttribute("bio", user.getBio());
-        model.addAttribute("email", userDetails.getUsername());
-        model.addAttribute("phone", user.getPhone());
-        model.addAttribute("gender", user.getGender());
-        model.addAttribute("profileImageUrl", user.getProfileImageUrl());
-        model.addAttribute("ProfileImagePath", user.getProfileImagePath());
-
-    }
+//    public void models(@AuthenticationPrincipal UserDetails userDetails, Model model){
+//        User user = authService.FindByEmail(userDetails.getUsername());
+//        System.out.println(user);
+//        model.addAttribute("userinfo", user);
+//        model.addAttribute("name", user.getName());
+//        model.addAttribute("username", user.getUsername());
+//        model.addAttribute("bio", user.getBio());
+//        model.addAttribute("email", userDetails.getUsername());
+//        model.addAttribute("phone", user.getPhone());
+//        model.addAttribute("gender", user.getGender());
+//        model.addAttribute("profileImageUrl", user.getProfileImageUrl());
+//        model.addAttribute("ProfileImagePath", user.getProfileImagePath());
+//
+//    }
 }
 
 

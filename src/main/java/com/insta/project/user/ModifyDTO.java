@@ -9,5 +9,4 @@ public class ModifyDTO {
     private String MDbio;
     private String MDphone;
     private String MDgender;
-//    private String MDprofileImageUrl;
 }
