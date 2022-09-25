@@ -10,15 +10,12 @@ public class SignupDto {
     private String email;
     private String name;
 
-    private String profileImageUrl;
-
     public User toEntity() {
         return User.builder()
                 .username(username)
                 .password(password)
                 .email(email)
                 .name(name)
-                .profileImageUrl(profileImageUrl)
                 .build();
     }
 }

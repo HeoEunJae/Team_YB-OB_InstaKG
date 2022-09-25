@@ -20,13 +20,14 @@ public class FileService {
 
         try {
             for (MultipartFile file : profileImage) {
-                String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\userProfile";
+                String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\userProfile\\";
 
                 UUID uuid = UUID.randomUUID();
 
                 String fileName = uuid + "_" + file.getOriginalFilename();
 
                 File saveFile = new File(projectPath, fileName);
+                if (!saveFile.exists()) saveFile.mkdirs();
 
                 file.transferTo(saveFile);
                 deleteFile(user.getProfileImageUrl());
