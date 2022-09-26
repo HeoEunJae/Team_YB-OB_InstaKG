@@ -32,7 +32,7 @@ public class MainController {
     public String story(@AuthenticationPrincipal UserDetails userDetails, Model model) {
         User user = authService.FindByEmail(userDetails.getUsername());
         model.addAttribute("user", user);
-        List<Question> questionList = this.questionService.getList();
+        List<Question> questionList = this.questionService.getList(user.getEmail());
         Collections.sort(questionList, (a, b) -> b.getId() - a.getId());
         model.addAttribute("question", questionList);
         return "story";
@@ -43,7 +43,7 @@ public class MainController {
     public String profile(@AuthenticationPrincipal UserDetails userDetails, Model model) throws Exception {
         User user = authService.FindByEmail(userDetails.getUsername());
         model.addAttribute("user", user);
-        List<Question> questionList = this.questionService.getList();
+        List<Question> questionList = this.questionService.getList(user.getEmail());
         Collections.sort(questionList, (a, b) -> b.getId() - a.getId());
         model.addAttribute("question", questionList);
         return "profile";

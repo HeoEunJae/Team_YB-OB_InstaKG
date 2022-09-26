@@ -1,11 +1,10 @@
 package com.insta.project.question.dao;
 
 import com.insta.project.question.domain.Question;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface QuestionRepository extends JpaRepository<Question, Integer> {
-    Page<Question> findAll(Pageable pageable);
+import java.util.List;
 
+public interface QuestionRepository extends JpaRepository<Question, Integer> {
+    List<Question> findByEmail(String email);
 }

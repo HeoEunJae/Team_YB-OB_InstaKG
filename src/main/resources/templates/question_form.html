@@ -8,8 +8,7 @@
         <div class="mt-4"> <!-- 네비바와 거리띄우기 -->
             <div class="main_container d-flex justify-content-center">
                 <div class="col-9">
-                    <form th:action="@{/multi-file}" enctype="multipart/form-data" th:object="${questionForm}"
-                          method="post">
+                    <form enctype="multipart/form-data" th:object="${questionForm}" onsubmit="javascript:fileSubmit(event)" id="imageSubmit">
                         <div th:replace="form_errors :: formErrorsFragment"></div>
                         <div class="mb-3">
                             <strong for="content" class="form-label">내용</strong>
@@ -123,10 +122,23 @@
           }
         )('att_zone', 'btnAtt');
 
-
-
-
-
+        function fileSubmit(event){
+            event.preventDefault();
+            const isVal = document.getElementById( 'btnAtt' ).value;
+            console.log("함수 부분");
+            console.log(isVal);
+            if(isVal.trim().length == 0){
+                console.log("이미지 부분");
+                alert("이미지를 넣어주세요.");
+                return;
+            }
+            else{
+                console.log("제출 부분");
+                imageSubmit.action = "/multi-file";
+                imageSubmit.method = "post";
+                imageSubmit.submit();
+            }
+        }
 
         </script>
 </html>

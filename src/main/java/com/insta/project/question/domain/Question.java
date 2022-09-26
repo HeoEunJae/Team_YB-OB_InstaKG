@@ -36,6 +36,8 @@ public class Question {
 
     private Integer onOff;
 
+    private String email;
+
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
 

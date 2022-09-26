@@ -17,8 +17,8 @@ public class QuestionService {
     @Autowired
     private QuestionRepository questionRepository;
 
-    public List<Question> getList() {
-        return this.questionRepository.findAll();
+    public List<Question> getList(String email) {
+        return this.questionRepository.findByEmail(email);
     }
 
 /*
@@ -39,12 +39,13 @@ public class QuestionService {
         }
     }
 
-    public Question create(String content){
+    public Question create(String content, String email){
         Question question = new Question();
         question.setContent(content);
         question.setCreateDate(LocalDateTime.now());
         question.setModifyDate(LocalDateTime.now());
         question.setReplyLike(0);
+        question.setEmail(email);
         this.questionRepository.save(question);
         return question;
     }
