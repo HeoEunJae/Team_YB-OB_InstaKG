@@ -33,6 +33,7 @@ public class Answer {
     @ManyToOne
     private Question question;
 
+
     @OneToMany(mappedBy = "answer", cascade = CascadeType.REMOVE)
     private List<AnswerComment> answerCommentsList;
 

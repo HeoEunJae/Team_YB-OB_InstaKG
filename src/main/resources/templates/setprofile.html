@@ -10,9 +10,15 @@
                             <div class="card">
                                 <form th:action="@{setprofile}" method="post">
                                     <div class="d-flex justify-content-center mt-4">
-                                        <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center profile-profile-photo">
+                                        <div class="rounded-circle overflow-hidden d-flex justify-content-center profile-profile-photo">
                                             <!-- 프로필 사진 -->
-                                            <img th:src="${user.profileImagePath}" alt="프로필 이미지" style="transform: scale(1.5); width: 100%; position: absolute; left: 0">
+                                            <div th:if="${user.profileImagePath == null}">
+                                                <img th:src="@{/img/basic-profile-image.png}"
+                                                     style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
+                                            </div>
+                                            <div th:unless="${user.profileImagePath == null}">
+                                                <img th:src="${user.profileImagePath}" alt="프로필 이미지" style="transform: scale(1.5); width: 100%; position: absolute; left: 0">
+                                            </div>
                                            <!-- <img th:src="@{/img/basic-profile-image.png}"
                                                  style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/> -->
                                         </div>
@@ -113,12 +119,6 @@
                         </div>
                         <button type="submit" class="Modal-Nomal">확인</button>
                     </form>
-<!--                    <a class="Modal-Nomal" href="">-->
-<!--                        <div class="filebox">-->
-<!--                            <label for="ex_file">프로필 사진 변경하기</label>-->
-<!--                            <input type="file" id="ex_file" name="profileImageUrl">-->
-<!--                        </div>-->
-<!--                    </a>-->
                     <hr>
 
                     <a class="Modal-Nomal" href="" data-bs-dismiss="modal">

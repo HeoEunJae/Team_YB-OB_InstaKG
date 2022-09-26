@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InstaKG</title>
     <link rel="stylesheet" th:href="@{font.css}">
+    <link rel="stylesheet" th:href="@{footer.css}">
     <link rel="stylesheet" th:href="@{css/bootstrap.css}">
     <script type="text/javascript" th:src="@{bootstrap.js}"></script>
 
@@ -42,6 +43,7 @@
 			max-width:400px;
 		}
     }
+
 
     </style>
 </head>
@@ -93,6 +95,15 @@
         </div>
     </div>
 </div>
+
+<footer class="fixed-bottom" th:fragment="footerFragment">
+    <strong class="d-flex justify-content-center mt-5">
+        팀명&nbsp<font class="text-secondary">OB&YB</font>&nbsp&nbsp팀프로젝트명&nbsp<font class="text-secondary">InstaKG</font>&nbsp&nbspGithub&nbsp<a class="text-decoration-none text-secondary"href="https://github.com/HeoEunJae/Team_YB-OB_InstaKG">InstaKG 프로젝트</a>&nbsp&nbsp프로젝트 기간&nbsp<font class="text-secondary">2022.08.01 ~ 2022.09.30</font>
+    </strong>
+    <strong class="d-flex justify-content-center mt-1">팀원명&nbsp<font class="text-secondary">허은재, 박선호, 윤이령, 이민영, 특별조원 박소망</font></strong>
+    <strong class="d-flex justify-content-center mt-3">© 2022 INSTAKG FROM TEAM OB&YB
+    </strong>
+</footer>
 
 <!--<a class="link-danger" href="#">aaaaaaa</a>-->
 <!-- JavaScript Bundle with Popper -->
