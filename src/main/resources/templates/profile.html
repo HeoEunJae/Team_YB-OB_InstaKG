@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}" xmlns="http://www.w3.org/1999/html">
-<div class="main_container" layout:fragment="content">
+<div class="main_container footer" layout:fragment="content">
     <!-- 프로필 화면 시작 -->
     <div class="mt-5"> <!-- 네비바와 거리띄우기 -->
         <div class="main_container d-flex justify-content-center">
@@ -9,9 +9,15 @@
                     <div class="col-4">
                         <div>
                             <a href="#">
-                                <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center profile-profile-photo">
+                                <div class="rounded-circle overflow-hidden d-flex justify-content-center profile-profile-photo">
                                     <!-- 프로필 사진 -->
-                                    <img th:src="${user.profileImagePath}" alt="프로필 이미지" style="transform: scale(1.5); width: 100%; position: absolute; left: 0">
+                                    <div th:if="${user.profileImagePath == null}">
+                                        <img th:src="@{/img/basic-profile-image.png}"
+                                             style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
+                                    </div>
+                                    <div th:unless="${user.profileImagePath == null}">
+                                        <img th:src="${user.profileImagePath}" alt="프로필 이미지" style="transform: scale(1.5); width: 100%; position: absolute; left: 0">
+                                    </div>
                                 </div>
                             </a>
                         </div>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}" xmlns="http://www.w3.org/1999/html">
-<div class="main_container" layout:fragment="content">
+<div class="main_container footer" layout:fragment="content">
 
     <section class="main">
         <!-- 상단 친구목록? 내용물 관련 -->
@@ -50,10 +50,15 @@
                                         <div class="d-flex flex-row align-items-center justify-content-between">
                                             <div class="d-flex align-items-center ms-2">
                                                 <a th:href="@{/question/profile}">
-                                                    <div class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo me-3">
+                                                    <div class="rounded-circle overflow-hidden d-flex justify-content-center border border-danger post-profile-photo me-3">
                                                         <!-- 게시물 프로필사진 -->
-                                                        <img th:src="${user.profileImagePath}" alt="프로필 이미지"
-                                                             style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
+                                                        <div th:if="${user.profileImagePath == null}">
+                                                            <img th:src="@{/img/basic-profile-image.png}"
+                                                                 style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
+                                                        </div>
+                                                        <div th:unless="${user.profileImagePath == null}">
+                                                            <img th:src="${user.profileImagePath}" alt="프로필 이미지" style="transform: scale(1.5); width: 100%; position: absolute; left: 0">
+                                                        </div>
                                                     </div>
                                                 </a>
                                                 <div class="d-flex justify-content-start">
@@ -264,8 +269,13 @@
                             <div class="d-flex flex-row align-items-center">
                                 <div class="rounded-circle overflow-hidden border side-profile-photo">
                                     <!-- 오른쪽 큰 프로필사진 -->
-                                    <img th:src="${user.profileImagePath}" alt="프로필 이미지"
-                                         style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
+                                    <div th:if="${user.profileImagePath == null}">
+                                        <img th:src="@{/img/basic-profile-image.png}"
+                                             style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
+                                    </div>
+                                    <div th:unless="${user.profileImagePath == null}">
+                                        <img th:src="${user.profileImagePath}" alt="프로필 이미지" style="transform: scale(1.5); width: 100%; position: absolute; left: 0">
+                                    </div>
                                 </div>
                                 <div class="ms-3">
                                     <span class="profile-info-username" th:text="${user.username}">사용자1</span>
@@ -453,11 +463,8 @@
             </div>
         </div>
     </div>
-    <!-- JavaScript Bundle with Popper -->
-
-
 </div>
-
+<!-- JavaScript Bundle with Popper -->
 <script layout:fragment="script" type='text/javascript'>
 //내용이 공란일시 확인창 비활성화
 $(function(){
