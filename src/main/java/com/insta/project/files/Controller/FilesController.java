@@ -4,6 +4,8 @@ import com.insta.project.files.service.FilesService;
 import com.insta.project.question.QuestionForm;
 import com.insta.project.question.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,12 +30,15 @@ public class FilesController {
     public String multiFileUpload(
             Model model,
             @RequestParam("multiFile") List<MultipartFile> multiFileList,
-            QuestionForm questionForm
+            QuestionForm questionForm,
+            @AuthenticationPrincipal UserDetails userDetails
     )throws InterruptedException{
+
         try{
-            filesService.upload(questionForm, multiFileList);
+            filesService.upload(questionForm, multiFileList, userDetails.getUsername());
+
         }catch(Exception e){
-            questionService.create(questionForm.getContent());
+            questionService.create(questionForm.getContent(), userDetails.getUsername());
         }
         return "redirect:/question/list";
     }
