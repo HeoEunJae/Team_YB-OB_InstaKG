@@ -8,7 +8,8 @@
         <div class="mt-4"> <!-- 네비바와 거리띄우기 -->
             <div class="main_container d-flex justify-content-center">
                 <div class="col-9">
-                    <form enctype="multipart/form-data" th:object="${questionForm}" onsubmit="javascript:fileSubmit(event)" id="imageSubmit">
+                    <form enctype="multipart/form-data" th:object="${questionForm}"
+                          onsubmit="javascript:fileSubmit(event)" id="imageSubmit">
                         <div th:replace="form_errors :: formErrorsFragment"></div>
                         <div class="mb-3">
                             <strong for="content" class="form-label">내용</strong>
@@ -33,9 +34,9 @@
         </div>
     </section>
 </div>
-        <!-- 게시물 관련 끝-->
+<!-- 게시물 관련 끝-->
 
-        <script layout:fragment="script" type='text/javascript'>
+<script layout:fragment="script" type='text/javascript'>
     (imageView = function imageView(att_zone, btn){
             var attZone = document.getElementById(att_zone);
             var btnAtt = document.getElementById(btn);
@@ -140,5 +141,5 @@
             }
         }
 
-        </script>
+</script>
 </html>
