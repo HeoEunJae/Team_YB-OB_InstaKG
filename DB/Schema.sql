@@ -10,7 +10,8 @@ CREATE TABLE Question (
     modify_date DATETIME DEFAULT NOW(),
     reply_like TINYINT DEFAULT 0,
     on_off TINYINT DEFAULT 0,
-    answer_id INT(11) UNSIGNED
+    answer_id INT(11) UNSIGNED,
+    `email` VARCHAR(40) TEXT NOT NULL
 );
 
 
