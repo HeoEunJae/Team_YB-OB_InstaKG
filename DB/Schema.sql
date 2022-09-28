@@ -11,7 +11,7 @@ CREATE TABLE Question (
     reply_like TINYINT DEFAULT 0,
     on_off TINYINT DEFAULT 0,
     answer_id INT(11) UNSIGNED,
-    `email` VARCHAR(40) TEXT NOT NULL
+    `email` VARCHAR(40) NOT NULL
 );
 
 

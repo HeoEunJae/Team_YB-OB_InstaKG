@@ -14,12 +14,26 @@
 .line_set{
     margin-right: 115px;
     display: flex;
+    align-items:center;
     justify-content: end;
+}
+
+.line_Text{
+   display:flex;
+   justify-content:center;
+   padding-left:283px;
+}
+
+.line_title{
+    display:flex;
+    justify-content:center;
+    padding-right:48px;
 }
 
 .txtbox{
     margin-left: 25px;
-    width:400px;
+    width:418.5px;
+
 }
 
 .txtsize{
