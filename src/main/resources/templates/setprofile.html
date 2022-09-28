@@ -20,8 +20,6 @@
                                             <img th:src="${user.profileImagePath}" alt="프로필 이미지"
                                                  style="transform: scale(1.5); width: 100%; position: absolute; left: 0">
                                         </div>
-                                        <!-- <img th:src="@{/img/basic-profile-image.png}"
-                                              style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/> -->
                                     </div>
                                     <div class="d-flex flex-column">
                                         <span class="ms-3 fs-5" th:text="${user.username}">사용자1(유저네임)</span>
@@ -46,13 +44,12 @@
                                         </div>
                                     </div>
                                     <div class="mt-3 line_Text">
-
                                     <span class="txtsize">사람들이 이름, 별명 또는 비즈니스 이름 등 회원님의 알려진 이름을 사용하여
                                         회원님의 계정을 찾을수 있도록 도와주세요.</span>
                                     </div>
                                     <div class="mt-3 line_set">
                                         <strong>사용자 이름</strong>
-                                        <div class="">
+                                        <div>
                                             <input class="txtbox form-control" type="text" name="MDusername"
                                                    th:value="${user.username}"
                                                    style="width:418.5px"
@@ -68,7 +65,7 @@
                                               placeholder="소개란을 입력해주세요."></textarea>
                                         </div>
                                     </div>
-                                    <div class="">
+                                    <div>
                                         <div class="mt-4 mb-1 me-1 line_title">
                                             <strong class="text-muted">개인정보</strong>
                                         </div>
@@ -79,7 +76,7 @@
                                     </div>
                                     <div class="mt-3 line_set">
                                         <strong>이메일</strong>
-                                        <div class="">
+                                        <div>
                                             <input class="txtbox form-control" th:value="${user.email}"  style="width:418.5px" readonly/>
                                         </div>
                                     </div>
@@ -95,7 +92,7 @@
                                     </div>
                                     <div class="mt-3 line_set">
                                         <strong>성별</strong>
-                                        <div class="">
+                                        <div>
                                             <select class="txtbox form-control text-muted"  style="width:418.5px" name="MDgender">
                                                 <option th:if="${user.gender == null}" value="">선택하세요.</option>
                                                 <option th:if="${user.gender != null}" th:value="${user.gender}">
