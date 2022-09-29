@@ -34,7 +34,7 @@ public class Question {
 
     private LocalDateTime modifyDate;
 
-    private Integer onOff;
+    private Boolean onOff;
 
     private String email;
 
@@ -47,16 +47,16 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<AnswerComment> answerCommentsList;
 
-//    @Converter
-//    class BooleanToYNConverter implements AttributeConverter<Boolean, String> {
-//        @Override
-//        public String convertToDatabaseColumn(Boolean attribute) {
-//            return (attribute != null && attribute) ? "Y" : "N";
-//        }
-//
-//        @Override
-//        public Boolean convertToEntityAttribute(String dbData) {
-//            return "Y".equals(dbData);
-//        }
-//    }
+    @Converter
+    class BooleanToYNConverter implements AttributeConverter<Boolean, String> {
+        @Override
+        public String convertToDatabaseColumn(Boolean attribute) {
+            return (attribute != null && attribute) ? "Y" : "N";
+        }
+
+        @Override
+        public Boolean convertToEntityAttribute(String dbData) {
+            return "Y".equals(dbData);
+        }
+    }
 }
