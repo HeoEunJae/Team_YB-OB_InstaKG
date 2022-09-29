@@ -72,6 +72,8 @@
 
 ## ![](https://media.discordapp.net/attachments/986886165049262091/1024883450727112744/40x40.png) ERD 다이어그램
 
+![](https://media.discordapp.net/attachments/993375184193077272/1024901054166478898/unknown.png?width=904&height=630)
+
 ## ![](https://media.discordapp.net/attachments/986886165049262091/1024883450727112744/40x40.png) 메인 서비스
 
 ### 회원가입 / 로그인
