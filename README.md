@@ -73,3 +73,11 @@
 ## ![](https://media.discordapp.net/attachments/986886165049262091/1024883450727112744/40x40.png) ERD 다이어그램
 
 ## ![](https://media.discordapp.net/attachments/986886165049262091/1024883450727112744/40x40.png) 메인 서비스
+
+### 회원가입 / 로그인
+
+##### 회원가입 중복 화면 
+![](https://media.discordapp.net/attachments/1021608475320651849/1024889526201630770/614eb2a0f86a6fd9.PNG?width=588&height=629)
+
+##### 로그인 오류 화면
+![](https://media.discordapp.net/attachments/1021608475320651849/1024889510158409809/10ae33da93b4d300.PNG?width=561&height=603)
