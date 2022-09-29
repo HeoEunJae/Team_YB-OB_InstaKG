@@ -4,7 +4,9 @@
 * SQLyog
 * GitHuB
 ## ![](https://media.discordapp.net/attachments/986886165049262091/1024883450727112744/40x40.png) 사용 기술
+
 ### 백엔드
+
 ### Spring boot
 
 * JAVA 17
@@ -13,3 +15,22 @@
 * Spring Boot Jpa
 * Spring Boot Lombok
 * Spring boot thymeleaf
+
+### Build tool
+
+* Gradle
+
+### DataBase
+
+* Xampp
+* MySql
+
+### 프론트 엔드
+
+* Thymeleaf
+* Javascript
+* jQuery
+* Ajax
+* BootStrap
+* HTML5
+* CSS3
