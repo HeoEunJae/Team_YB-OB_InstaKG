@@ -128,7 +128,7 @@ public class QuestionService {
         this.questionRepository.delete(question);
     }
 
-    public void modify(Question question, String content, Integer onOff){
+    public void modify(Question question, String content, Boolean onOff){
         question.setContent(content);
         question.setModifyDate(LocalDateTime.now());
         question.setOnOff(onOff);
