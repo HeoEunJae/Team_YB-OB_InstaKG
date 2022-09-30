@@ -98,11 +98,11 @@
                                                         <form class="d-flex"
                                                               th:action="@{|/answer/create/detail/${question.id}/${answer.id}|}"
                                                               method="post">
-                                                            <input name="content" class="ms-1 w-75 border-0"
+                                                            <input name="content" class="ms-1 w-75 border-0 content"
                                                                    type="text"
                                                                    placeholder="답글달기">
-                                                            <button type="submit" class="btn-st fw-bold">
-                                                                확인
+                                                            <button type="submit" class="text-muted btn-st fw-bold post"
+                                                                    disabled="true">확인
                                                             </button>
                                                         </form>
                                                     </div>
@@ -297,18 +297,16 @@
                                         <div class="position-relative comment-box">
                                             <div th:if="!${question.onOff}">
                                                 <form th:action="@{|/answer/create/${question.id}|}" method="post">
-                                                    <input name="content" class="w-100 border-0 p-2" type="text"
+                                                    <input name="content" class="w-100 border-0 p-2 content" type="text"
                                                            placeholder="답글달기">
-                                                    <button type="submit"
-                                                            class="btn position-absolute btn-st fw-bold">
-                                                        확인
+                                                    <button type="submit" class="btn position-absolute btn-st fw-bold post"
+                                                            disabled="true">확인
                                                     </button>
                                                 </form>
                                             </div>
                                             <div th:if="${question.onOff}">
                                                 <form th:action="@{|/answer/create/${question.id}|}" method="post">
-                                                    <input name="content" class="w-100 border-0 p-2" type="text"
-                                                           placeholder="답글달기" disabled>
+                                                    <input name="content" class="w-100 border-0 p-2" type="text"  placeholder="답글달기">
                                                 </form>
                                             </div>
                                         </div>
@@ -441,6 +439,22 @@
 
 
 <script layout:fragment="script" type='text/javascript'>
+
+//내용이 공란일시 확인창 비활성화
+$(function(){
+    $(this).find(".content").on('input', function(){
+    console.log("입력됨");
+        if($(this).find(".content").val()=='' || $('.content').length==0){
+        console.log("123");
+         $(".post").attr("disabled", true);
+}
+        else{
+        console.log("내용 변경됨");
+           $(".post").attr("disabled", false);
+            }
+    });
+})
+
     var swiper = new Swiper(".mySwiper", {
         spaceBetween: 30,
         centeredSlides: true,
