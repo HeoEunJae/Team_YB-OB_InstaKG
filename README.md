@@ -78,8 +78,29 @@
 
 ### 회원가입 / 로그인
 
-##### 회원가입 중복 화면 
+##### 회원가입 화면(이메일 중복 시 화면)
 ![](https://media.discordapp.net/attachments/1021608475320651849/1024889526201630770/614eb2a0f86a6fd9.PNG?width=588&height=629)
 
-##### 로그인 오류 화면
+##### 로그인 화면(로그인 실패 시 화면)
 ![](https://media.discordapp.net/attachments/1021608475320651849/1024889510158409809/10ae33da93b4d300.PNG?width=561&height=603)
+
+##### 스토리 메인 화면
+![스토리](https://user-images.githubusercontent.com/99649645/193164344-1e891999-043f-4dfd-90f8-d5715ac61694.JPG)
+
+##### 스토리 좋아요 화면
+![스토리 - 스토리 화면에서 댓글 등록](https://user-images.githubusercontent.com/99649645/193164499-655b83bc-371b-4aeb-9ce5-e40f1f602a74.JPG)
+
+##### 스토리 게시물 수정/공유/삭제 댓글막기 기능 구현완료
+![스토리 - 모달창](https://user-images.githubusercontent.com/99649645/193164534-c70b52de-2865-487d-a7d5-7cbe2c7db5b8.JPG)
+
+##### 스토리 댓글에 댓글달기 화면
+![상세페이지 - 대댓글](https://user-images.githubusercontent.com/99649645/193164682-0f4373eb-c2b9-4442-b439-19876db259fe.JPG)
+
+##### 프로필 화면
+![프로필](https://user-images.githubusercontent.com/99649645/193164624-226341a8-902a-48e9-be69-23047ddf3822.JPG)
+
+##### 프로필 수정 페이지 화면
+![프로필 설정](https://user-images.githubusercontent.com/99649645/193164727-13491bf9-8000-47ea-a0c7-859519b57142.JPG)
+
+
+
