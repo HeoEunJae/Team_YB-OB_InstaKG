@@ -120,6 +120,7 @@
 ##### 프로필 수정 페이지 화면
 ![프로필 설정](https://user-images.githubusercontent.com/99649645/193164727-13491bf9-8000-47ea-a0c7-859519b57142.JPG)
 
-
+## ![](https://media.discordapp.net/attachments/986886165049262091/1024883450727112744/40x40.png) 기술 설명서
+https://wiken.io/ken/10711
 
 
