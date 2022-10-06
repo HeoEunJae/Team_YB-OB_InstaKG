@@ -96,11 +96,18 @@
 ##### 스토리 댓글에 댓글달기 화면
 ![상세페이지 - 대댓글](https://user-images.githubusercontent.com/99649645/193164682-0f4373eb-c2b9-4442-b439-19876db259fe.JPG)
 
+##### 게시물 업로드 사진 미리보기
+![업로드 - 사진 미리보기](https://user-images.githubusercontent.com/99649645/194207055-c6b01f81-e739-47cb-9994-5f48f6647ea5.JPG)
+
+##### 게시물 업로드 오류 화면
+![업로드 오류 발생 화면](https://user-images.githubusercontent.com/99649645/194207103-ebd49d86-5888-4487-b43e-291d77eeb5e9.JPG)
+
 ##### 프로필 화면
 ![프로필](https://user-images.githubusercontent.com/99649645/193164624-226341a8-902a-48e9-be69-23047ddf3822.JPG)
 
 ##### 프로필 수정 페이지 화면
 ![프로필 설정](https://user-images.githubusercontent.com/99649645/193164727-13491bf9-8000-47ea-a0c7-859519b57142.JPG)
+
 
 
 
