@@ -99,6 +99,9 @@
 ##### 댓글 수정 화면
 ![댓글 수정화면](https://user-images.githubusercontent.com/99649645/194207445-9cd7ccc3-5ad8-425e-bde0-bf6957222f3f.JPG)
 
+##### 
+![스토리 - 댓글 막기](https://user-images.githubusercontent.com/99649645/194208166-cce71701-1827-45bf-8abb-6990a99804e0.JPG)
+
 ##### 게시물 업로드 화면
 ![업로드](https://user-images.githubusercontent.com/99649645/194207370-8b9a5f23-cd4a-431e-8982-55c56a06bdc7.JPG)
 
