@@ -105,6 +105,9 @@
 ##### 프로필 화면
 ![프로필](https://user-images.githubusercontent.com/99649645/193164624-226341a8-902a-48e9-be69-23047ddf3822.JPG)
 
+##### 프로밀 화면 모달
+![프로필 - 모달](https://user-images.githubusercontent.com/99649645/194207248-25e03075-cc43-472d-af2d-249df197ddb7.JPG)
+
 ##### 프로필 수정 페이지 화면
 ![프로필 설정](https://user-images.githubusercontent.com/99649645/193164727-13491bf9-8000-47ea-a0c7-859519b57142.JPG)
 
