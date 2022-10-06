@@ -96,6 +96,9 @@
 ##### 스토리 댓글에 댓글달기 화면
 ![상세페이지 - 대댓글](https://user-images.githubusercontent.com/99649645/193164682-0f4373eb-c2b9-4442-b439-19876db259fe.JPG)
 
+##### 댓글 수정 화면
+![댓글 수정화면](https://user-images.githubusercontent.com/99649645/194207445-9cd7ccc3-5ad8-425e-bde0-bf6957222f3f.JPG)
+
 ##### 게시물 업로드 화면
 ![업로드](https://user-images.githubusercontent.com/99649645/194207370-8b9a5f23-cd4a-431e-8982-55c56a06bdc7.JPG)
 
