@@ -1,11 +1,14 @@
 package com.insta.project.files.service;
 
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.insta.project.files.dao.FilesRepository;
 import com.insta.project.files.domain.Files;
 import com.insta.project.question.QuestionForm;
 import com.insta.project.question.domain.Question;
 import com.insta.project.question.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +22,10 @@ import java.util.*;
 public class FilesService {
     private final FilesRepository filesRepository;
     private final QuestionService questionService;
+    @Value("${cloud.aws.s3.bucket}")
+    private String bucket;
+
+    private final AmazonS3 amazonS3;
 
     @Async
     public void upload(QuestionForm questionForm, List<MultipartFile> multiFileList, String email){
@@ -66,5 +73,20 @@ public class FilesService {
             files.setQuestion(question);
             filesRepository.save(files);
         }
+    }
+
+    public void awsUploadTest(List<MultipartFile> files) throws IOException {
+        files.stream()
+                .forEach(file->{
+                    String s3FileName = String.valueOf(UUID.randomUUID());
+                    ObjectMetadata objMeta = new ObjectMetadata();
+                    try{
+                        objMeta.setContentLength(file.getInputStream().available());
+                        amazonS3.putObject(bucket, s3FileName, file.getInputStream(), objMeta);
+                    }catch(IOException e){
+                        throw new RuntimeException(e);
+                    }
+                });
+
     }
 }

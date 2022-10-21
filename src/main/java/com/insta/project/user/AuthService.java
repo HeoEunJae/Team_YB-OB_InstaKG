@@ -33,7 +33,6 @@ public class AuthService {
     @Transactional
     public void modify(ModifyDTO modifyDTO, @AuthenticationPrincipal UserDetails userDetails){
         User user = userRepository.findByEmail(userDetails.getUsername());
-        System.out.println("????? 아아아아아아안뇽" + modifyDTO.getMDgender());
         user.modify(
                 modifyDTO.getMDusername(),
                 modifyDTO.getMDname(),

@@ -28,6 +28,7 @@ public class MainController {
     private final AuthService authService;
     private final QuestionService questionService;
 
+
     @GetMapping("/list")
     public String story(@AuthenticationPrincipal UserDetails userDetails, Model model) {
         User user = authService.FindByEmail(userDetails.getUsername());
@@ -39,7 +40,6 @@ public class MainController {
     }
 
     @GetMapping("/profile")
-//    @ResponseBody
     public String profile(@AuthenticationPrincipal UserDetails userDetails, Model model) throws Exception {
         User user = authService.FindByEmail(userDetails.getUsername());
         model.addAttribute("user", user);
@@ -75,21 +75,6 @@ public class MainController {
     public String question() {
         return "redirect:question/list";
     }
-
-//    public void models(@AuthenticationPrincipal UserDetails userDetails, Model model){
-//        User user = authService.FindByEmail(userDetails.getUsername());
-//        System.out.println(user);
-//        model.addAttribute("userinfo", user);
-//        model.addAttribute("name", user.getName());
-//        model.addAttribute("username", user.getUsername());
-//        model.addAttribute("bio", user.getBio());
-//        model.addAttribute("email", userDetails.getUsername());
-//        model.addAttribute("phone", user.getPhone());
-//        model.addAttribute("gender", user.getGender());
-//        model.addAttribute("profileImageUrl", user.getProfileImageUrl());
-//        model.addAttribute("ProfileImagePath", user.getProfileImagePath());
-//
-//    }
 }
 
 

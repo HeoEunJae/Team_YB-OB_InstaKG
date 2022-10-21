@@ -32,3 +32,17 @@ spring:
           type:
             descriptor:
               sql: trace
+
+cloud:
+  aws:
+    credentials:
+      accessKey: AKIATKVLJ3EG7VJMDGVI
+      secretKey: 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
+    s3:
+      bucket: instakg-team
+      dir: /
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+
