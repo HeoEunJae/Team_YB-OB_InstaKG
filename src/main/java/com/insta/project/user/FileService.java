@@ -1,6 +1,9 @@
 package com.insta.project.user;
 
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,37 +18,32 @@ public class FileService {
 
     private final UserRepository userRepository;
 
+    @Value("${cloud.aws.s3.bucket}")
+    private String bucket;
+
+    private final AmazonS3 amazonS3;
+
     public void UploadProfileImage(List<MultipartFile> profileImage, User user) throws Exception{
-        System.out.println(profileImage+"1111111111111");
+        profileImage.stream()
+                .forEach(file->{
+            String s3FileName = String.valueOf(UUID.randomUUID()) +".jpg";
+            user.setProfileImagePath(s3FileName);
+            userRepository.save(user);
 
-        try {
-            for (MultipartFile file : profileImage) {
-                String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\userProfile\\";
+            ObjectMetadata objMeta = new ObjectMetadata();
 
-                UUID uuid = UUID.randomUUID();
-
-                String fileName = uuid + "_" + file.getOriginalFilename();
-
-                File saveFile = new File(projectPath, fileName);
-                if (!saveFile.exists()) saveFile.mkdirs();
-
-                file.transferTo(saveFile);
-                deleteFile(user.getProfileImageUrl());
-                user.setProfileImagePath("/userProfile/" + fileName);
-
-                user.setProfileImageUrl(fileName);
-
-                userRepository.save(user);
-
+            try{
+                objMeta.setContentLength(file.getInputStream().available());
+                amazonS3.putObject(bucket, s3FileName, file.getInputStream(), objMeta);
+            }catch(IOException e){
+                throw new RuntimeException(e);
             }
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalStateException e) {
-            throw new RuntimeException(e);
-        }
+        });
 
     }
+
+
 
     public void deleteFile(String imgUrl) {
         String root = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\userProfile\\" + imgUrl;

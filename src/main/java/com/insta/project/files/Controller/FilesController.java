@@ -35,11 +35,18 @@ public class FilesController {
     )throws InterruptedException{
 
         try{
-            filesService.upload(questionForm, multiFileList, userDetails.getUsername());
+            filesService.awsUploadTest(questionForm, multiFileList, userDetails.getUsername());
 
         }catch(Exception e){
             questionService.create(questionForm.getContent(), userDetails.getUsername());
         }
         return "redirect:/question/list";
     }
+
+//    @PostMapping("/multi-file")
+//    @ResponseBody
+//    public String awsUploadTest(@RequestParam("files") List<MultipartFile> files) throws IOException {
+//        filesService.awsUploadTest(files);
+//        return "success";
+//    }
 }
