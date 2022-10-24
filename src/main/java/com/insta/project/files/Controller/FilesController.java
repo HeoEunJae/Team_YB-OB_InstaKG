@@ -8,10 +8,11 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -34,7 +35,7 @@ public class FilesController {
     )throws InterruptedException{
 
         try{
-            filesService.upload(questionForm, multiFileList, userDetails.getUsername());
+            filesService.awsUploadTest(questionForm, multiFileList, userDetails.getUsername());
 
         }catch(Exception e){
             questionService.create(questionForm.getContent(), userDetails.getUsername());
@@ -42,10 +43,10 @@ public class FilesController {
         return "redirect:/question/list";
     }
 
-    @PostMapping("/awsUploadTest")
-    @ResponseBody
-    public String awsUploadTest(@RequestParam("files") List<MultipartFile> files) throws IOException {
-        filesService.awsUploadTest(files);
-        return "success";
-    }
+//    @PostMapping("/multi-file")
+//    @ResponseBody
+//    public String awsUploadTest(@RequestParam("files") List<MultipartFile> files) throws IOException {
+//        filesService.awsUploadTest(files);
+//        return "success";
+//    }
 }
