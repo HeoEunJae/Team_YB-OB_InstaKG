@@ -22,10 +22,10 @@
                                                     <img th:if="${image.filename.contains('jpg')||image.filename.contains('png')}"
                                                          class="QuestionDetailSizeContain ratio ratio-1x1"
                                                          height="800"
-                                                         th:src="'/uploadFiles/'+${image.filename}" alt="img">
+                                                         th:src="'https://instakg-team.s3.ap-northeast-2.amazonaws.com/'+${image.filename}" alt="img">
                                                     <video th:unless="${image.filename.contains('jpg')||image.filename.contains('png')}"
                                                            class="QuestionDetailSizeContain ratio ratio-1x1" controls
-                                                           th:src="'/uploadFiles/'+${image.filename} "
+                                                           th:src="'https://instakg-team.s3.ap-northeast-2.amazonaws.com/'+${image.filename}"
                                                            height="800"></video>
                                                 </div>
                                             </div>
