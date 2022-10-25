@@ -42,10 +42,10 @@
                                                 <div class="swiper-slide" th:each="image : ${question.fileList}">
                                                     <img th:if="${image.filename.contains('jpg')}"
                                                          class="ratio ratio-1x1"
-                                                         th:src="'/uploadFiles/'+${image.filename}" alt="img">
+                                                         th:src="'https://instakg-team.s3.ap-northeast-2.amazonaws.com/'+${image.filename}" alt="img">
                                                     <video th:unless="${image.filename.contains('jpg')}"
                                                            class="ratio ratio-1x1" controls
-                                                           th:src="'/uploadFiles/'+${image.filename}"></video>
+                                                           th:src="'https://instakg-team.s3.ap-northeast-2.amazonaws.com/'+${image.filename}"></video>
                                                 </div>
                                             </div>
                                             <div class="swiper-button-next"></div>
