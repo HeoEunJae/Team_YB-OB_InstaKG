@@ -36,8 +36,8 @@ spring:
 cloud:
   aws:
     credentials:
-      accessKey: AKIATKVLJ3EG7VJMDGVI
-      secretKey: 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
+      accessKey:
+      secretKey:
     s3:
       bucket: instakg-team
       dir: /

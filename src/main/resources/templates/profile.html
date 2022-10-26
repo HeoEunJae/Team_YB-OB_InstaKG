@@ -16,7 +16,9 @@
                                              style="transform: scale(1.5); width: 100%; position: absolute; left: 0"/>
                                     </div>
                                     <div th:unless="${user.profileImagePath == null}">
-                                        <img th:src="'https://instakg-team.s3.ap-northeast-2.amazonaws.com/'+${user.profileImagePath}" alt="프로필 이미지" style="transform: scale(1.5); width: 100%; position: absolute; left: 0">
+                                        <img th:src="'https://instakg-team.s3.ap-northeast-2.amazonaws.com/'+${user.profileImagePath}"
+                                             alt="프로필 이미지"
+                                             style="transform: scale(1.5); width: 100%; position: absolute; left: 0">
                                     </div>
                                 </div>
                             </a>
@@ -26,7 +28,7 @@
                     <div class="col-6">
                         <!-- 사용자 아이디 / 프로필 편집 버튼 / 설정버튼 시작 -->
                         <div class="d-flex align-items-center">
-                            <h4 class="mt-2"th:text="${user.username}">사용자1(유저네임)</h4>
+                            <h4 class="mt-2" th:text="${user.username}">사용자1(유저네임)</h4>
                             <!-- 필요없음
                             <div class="ms-2 border border-dark bg-white">
                                 <a th:href="@{/setprofile}" class="Modal-Nomal">프로필 편집</a>
@@ -125,11 +127,13 @@
                                  <span th:if="${index.index} == 0">
                                      <img th:if="${image.filename.contains('jpg')||image.filename.contains('png')}"
                                           height="300" width="300"
-                                          th:src="'/uploadFiles/'+${image.filename}" alt="img">
+                                          th:src="'https://instakg-team.s3.ap-northeast-2.amazonaws.com/'+${image.filename}"
+                                          alt="img">
                                      <video th:unless="${image.filename.contains('jpg')||image.filename.contains('png')}"
                                             height="300" width="300" class="bg-white"
                                             controls
-                                            th:src="'/uploadFiles/'+${image.filename}"></video>
+                                            th:src="'https://instakg-team.s3.ap-northeast-2.amazonaws.com/'+${image.filename}"
+                                            alt="img"></video>
                               </span>
                         </div>
                     </a>
