@@ -64,21 +64,21 @@ public class FilesService {
 //        }
 //    }
 
-    private void uploadDB(String fileName, QuestionForm questionForm, String email) {
-        Question question = questionService.create(questionForm.getContent(), email);
-
-            Files files = new Files();
-            files.setFilename(fileName);
-            files.setQuestion(question);
-            filesRepository.save(files);
-
+    private void uploadDB(String fileName, QuestionForm questionForm, String email, Question question) {
+            Files Files = new Files();
+            Files.setFilename(fileName);
+            Files.setQuestion(question);
+            filesRepository.save(Files);
     }
 
     public void awsUploadTest(QuestionForm questionForm, List<MultipartFile> files, String email) throws IOException {
+        Question question = questionService.create(questionForm.getContent(), email);
         files.stream()
                 .forEach(file->{
-                    String s3FileName = String.valueOf(UUID.randomUUID()) +".jpg";
-                    uploadDB(s3FileName,questionForm,email);
+                    String originFile = file.getOriginalFilename();
+                    String ext = originFile.substring(originFile.lastIndexOf("."));
+                    String s3FileName = UUID.randomUUID().toString() + ext;
+                    uploadDB(s3FileName,questionForm,email,question);
                     ObjectMetadata objMeta = new ObjectMetadata();
                     try{
                         objMeta.setContentLength(file.getInputStream().available());
