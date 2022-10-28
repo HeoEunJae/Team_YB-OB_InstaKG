@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
@@ -23,30 +22,37 @@ public class FileService {
 
     private final AmazonS3 amazonS3;
 
-    public void UploadProfileImage(List<MultipartFile> profileImage, User user) throws Exception{
+    public void UploadProfileImage(List<MultipartFile> profileImage, User user) throws Exception {
         profileImage.stream()
-                .forEach(file->{
-            String s3FileName = String.valueOf(UUID.randomUUID()) +".jpg";
-            user.setProfileImagePath(s3FileName);
-            userRepository.save(user);
+                .forEach(file -> {
+                    String currentImg = user.getProfileImagePath();
+                    boolean isExistObject = amazonS3.doesObjectExist(bucket, currentImg);
+                    if (isExistObject == true) {
+                        amazonS3.deleteObject(bucket, currentImg);
+                        deleteFile(user);
+                    }
 
-            ObjectMetadata objMeta = new ObjectMetadata();
+                    String originFile = file.getOriginalFilename();
+                    String ext = originFile.substring(originFile.lastIndexOf("."));
+                    String s3FileName = UUID.randomUUID().toString() + ext;
+                    user.setProfileImagePath(s3FileName);
+                    userRepository.save(user);
 
-            try{
-                objMeta.setContentLength(file.getInputStream().available());
-                amazonS3.putObject(bucket, s3FileName, file.getInputStream(), objMeta);
-            }catch(IOException e){
-                throw new RuntimeException(e);
-            }
+                    ObjectMetadata objMeta = new ObjectMetadata();
 
-        });
+                    try {
+                        objMeta.setContentLength(file.getInputStream().available());
+                        amazonS3.putObject(bucket, s3FileName, file.getInputStream(), objMeta);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                });
 
     }
 
-
-
-    public void deleteFile(String imgUrl) {
-        String root = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\userProfile\\" + imgUrl;
-        new File(root).delete();
+    public void deleteFile(User user) {
+        user.setProfileImagePath("");
+        userRepository.save(user);
     }
 }

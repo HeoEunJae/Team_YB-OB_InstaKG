@@ -1,21 +1,30 @@
 package com.insta.project.question.service;
 
+import com.amazonaws.services.s3.AmazonS3;
 import com.insta.project.DataNotFoundException;
 import com.insta.project.files.domain.Files;
 import com.insta.project.question.dao.QuestionRepository;
 import com.insta.project.question.domain.Question;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class QuestionService {
     @Autowired
     private QuestionRepository questionRepository;
+
+    @Value("${cloud.aws.s3.bucket}")
+    private String bucket;
+
+    private final AmazonS3 amazonS3;
+
 
     public List<Question> getList(String email) {
         return this.questionRepository.findByEmail(email);
@@ -49,63 +58,6 @@ public class QuestionService {
         this.questionRepository.save(question);
         return question;
     }
- /*
-  // 이미지 다중 이미지 구현 2
-    public void create(Question question, List<MultipartFile> files) throws Exception {
-        String fileName = null;
-        File saveFile;
-        try {
-            String totalFile = "";
-            String totalFilePath = "";
-            for(MultipartFile file : files){
-                UUID uuid = UUID.randomUUID();
-                fileName = uuid + "_" + file.getOriginalFilename();
-                totalFile += fileName + "*";
-                totalFilePath += "/files/" + fileName + "*";
-            }
-
-            for (MultipartFile file : files) {
-                String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
-
-               UUID uuid = UUID.randomUUID();
-
-                fileName = uuid + "_" + file.getOriginalFilename();*//*
-
-                saveFile = new File(projectPath, fileName);
-
-                file.transferTo(saveFile);
-
-                question.setFilepath(totalFilePath);
-
-                question.setFilename(totalFile);
-
-                question.setCreateDate(LocalDateTime.now());
-
-                question.setReplyLike(false);
-
-                questionRepository.save(question);
-
-            }
-
-
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalStateException e) {
-            throw new RuntimeException(e);
-        }
-    }
-*/
-
-
-/*
-    public void updateHit(Integer id) {
-        Question question = getQuestion(id);
-        int count = question.getHit();
-        question.setHit(count + 1);
-        questionRepository.save(question);
-    }
-*/
 
     public Integer setLike(Integer questionId) {
         Question question = questionRepository.findById(questionId).get();
@@ -121,9 +73,8 @@ public class QuestionService {
 
 
     public void delete(Question question){
-        String root = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\uploadFiles";
         for(Files file: question.getFileList()){
-            new File(root + "\\" + file.getFilename()).delete();
+            amazonS3.deleteObject(bucket, file.getFilename());
         }
         this.questionRepository.delete(question);
     }
