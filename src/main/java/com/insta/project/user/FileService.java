@@ -26,12 +26,17 @@ public class FileService {
         profileImage.stream()
                 .forEach(file -> {
                     String currentImg = user.getProfileImagePath();
-                    boolean isExistObject = amazonS3.doesObjectExist(bucket, currentImg);
-                    if (isExistObject == true) {
-                        amazonS3.deleteObject(bucket, currentImg);
-                        deleteFile(user);
+                    try {
+                        if (currentImg.trim().length() != 0) {
+                            boolean isExistObject = amazonS3.doesObjectExist(bucket, currentImg);
+                            if (isExistObject == true) {
+                                amazonS3.deleteObject(bucket, currentImg);
+                                deleteFile(user);
+                            }
+                        }
                     }
-
+                    catch (Exception e){
+                    }
                     String originFile = file.getOriginalFilename();
                     String ext = originFile.substring(originFile.lastIndexOf("."));
                     String s3FileName = UUID.randomUUID().toString() + ext;
