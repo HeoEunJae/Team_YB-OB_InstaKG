@@ -39,7 +39,7 @@ cloud:
       accessKey:
       secretKey:
     s3:
-      bucket: instakg-team
+      bucket:
       dir: /
     region:
       static: ap-northeast-2
